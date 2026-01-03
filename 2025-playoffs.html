@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAFFL 2025 Playoffs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-block;
+            color: #ffd700;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        .champion-banner {
+            text-align: center;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #1a1a2e;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 1.3rem;
+        }
+        .champion-banner span {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* Bracket Layout */
+        .bracket {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+        .round {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 280px;
+        }
+        .round-title {
+            text-align: center;
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        /* Matchup Cards */
+        .matchup {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .matchup:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: #ffd700;
+            transform: scale(1.02);
+        }
+        .matchup.bye {
+            opacity: 0.6;
+            cursor: default;
+        }
+        .matchup.bye:hover {
+            transform: none;
+            border-color: transparent;
+        }
+        .team-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+        .team-row:first-child {
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .team-name {
+            font-weight: 500;
+        }
+        .team-score {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .winner .team-name {
+            color: #ffd700;
+        }
+        .winner .team-score {
+            color: #ffd700;
+        }
+        .click-hint {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        /* Championship styling */
+        .championship .matchup {
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,170,0,0.1));
+            border: 2px solid #ffd700;
+        }
+
+        /* Connector lines */
+        .round:not(:last-child) .matchup::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            width: 20px;
+            height: 2px;
+            background: #ffd700;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background: #1a1a2e;
+            border-radius: 15px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 2px solid #ffd700;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,215,0,0.1);
+        }
+        .modal-header h2 {
+            color: #ffd700;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .close-btn:hover {
+            color: #ffd700;
+        }
+        .modal-body {
+            padding: 20px;
+        }
+
+        /* Matchup Detail */
+        .matchup-header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .team-detail {
+            text-align: center;
+        }
+        .team-detail.winner-detail {
+            color: #ffd700;
+        }
+        .team-detail h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        .team-detail .score {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .team-detail .record {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        .vs-text {
+            font-size: 1.5rem;
+            color: #888;
+        }
+
+        /* Player Table */
+        .players-section h4 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .players-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        .players-table th {
+            background: rgba(255,215,0,0.2);
+            color: #ffd700;
+            padding: 10px;
+            text-align: left;
+        }
+        .players-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .players-table tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .pos-col {
+            text-align: center;
+            color: #888;
+        }
+        .pts-col {
+            font-weight: bold;
+            text-align: right;
+        }
+        .winner-pts {
+            color: #4ade80;
+        }
+        .loser-pts {
+            color: #f87171;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .bracket {
+                flex-direction: column;
+            }
+            .matchup-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Home</a>
+        <h1>2025 Playoffs</h1>
+        <div class="champion-banner">
+            🏆 Champion: <span>CCR</span> 🏆
+        </div>
+
+        <div class="bracket">
+            <!-- Round 1 - Quarterfinals -->
+            <div class="round">
+                <div class="round-title">Week 15 - Quarterfinals</div>
+                <div class="matchup" onclick="showMatchup('qf1')">
+                    <div class="team-row winner">
+                        <span class="team-name">CCR</span>
+                        <span class="team-score">176.78</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-name">Rockets</span>
+                        <span class="team-score">127.02</span>
+                    </div>
+                    <div class="click-hint">Click for details</div>
+                </div>
+                <div class="matchup" onclick="showMatchup('qf2')">
+                    <div class="team-row">
+                        <span class="team-name">Gamehendge Comets</span>
+                        <span class="team-score">154.06</span>
+                    </div>
+                    <div class="team-row winner">
+                        <span class="team-name">CMC</span>
+                        <span class="team-score">178.16</span>
+                    </div>
+                    <div class="click-hint">Click for details</div>
+                </div>
+                <div class="matchup bye">
+                    <div class="team-row winner">
+                        <span class="team-name">Saquon deez nutz</span>
+                        <span class="team-score">135.62</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-name">BYE</span>
+                        <span class="team-score">-</span>
+                    </div>
+                </div>
+                <div class="matchup bye">
+                    <div class="team-row winner">
+                        <span class="team-name">Who Flung Puka</span>
+                        <span class="team-score">109.20</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-name">BYE</span>
+                        <span class="team-score">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Round 2 - Semifinals -->
+            <div class="round">
+                <div class="round-title">Week 16 - Semifinals</div>
+                <div class="matchup" onclick="showMatchup('sf1')">
+                    <div class="team-row winner">
+                        <span class="team-name">CCR</span>
+                        <span class="team-score">186.08</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-name">Who Flung Puka</span>
+                        <span class="team-score">175.86</span>
+                    </div>
+                    <div class="click-hint">Click for details</div>
+                </div>
+                <div class="matchup" onclick="showMatchup('sf2')">
+                    <div class="team-row winner">
+                        <span class="team-name">Saquon deez nutz</span>
+                        <span class="team-score">159.20</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-name">CMC</span>
+                        <span class="team-score">123.00</span>
+                    </div>
+                    <div class="click-hint">Click for details</div>
+                </div>
+            </div>
+
+            <!-- Championship -->
+            <div class="round championship">
+                <div class="round-title">Week 17 - Championship</div>
+                <div class="matchup" onclick="showMatchup('final')">
+                    <div class="team-row winner">
+                        <span class="team-name">CCR 🏆</span>
+                        <span class="team-score">187.50</span>
+                    </div>
+                    <div class="team-row">
+                        <span class="team-name">Saquon deez nutz</span>
+                        <span class="team-score">117.52</span>
+                    </div>
+                    <div class="click-hint">Click for details</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modal-title">Matchup Details</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const matchupData = {
+            qf1: {
+                title: "Week 15 - Quarterfinal",
+                team1: { name: "CCR", manager: "AdamR", record: "8-6-0 | 1st", score: 176.78, isWinner: true },
+                team2: { name: "Rockets", manager: "Michael", record: "7-7-0 | 5th", score: 127.02, isWinner: false },
+                players: {
+                    team1: [
+                        { pos: "QB", name: "Brock Purdy", pts: 26.20 },
+                        { pos: "WR", name: "Zay Flowers", pts: 15.80 },
+                        { pos: "WR", name: "Jaxon Smith-Njigba", pts: 18.30 },
+                        { pos: "WR", name: "Deebo Samuel", pts: 7.30 },
+                        { pos: "RB", name: "Derrick Henry", pts: 10.00 },
+                        { pos: "RB", name: "Saquon Barkley", pts: 17.20 },
+                        { pos: "TE", name: "George Kittle", pts: 22.80 },
+                        { pos: "W/R/T", name: "Davante Adams", pts: 11.10 },
+                        { pos: "Q/W", name: "Bo Nix", pts: 32.08 },
+                        { pos: "DEF", name: "Eagles", pts: 16.00 }
+                    ],
+                    team2: [
+                        { pos: "QB", name: "Drake Maye", pts: 21.50 },
+                        { pos: "WR", name: "CeeDee Lamb", pts: 17.10 },
+                        { pos: "WR", name: "Courtland Sutton", pts: 24.30 },
+                        { pos: "WR", name: "Wan'Dale Robinson", pts: 16.40 },
+                        { pos: "RB", name: "Jaylen Warren", pts: 7.80 },
+                        { pos: "RB", name: "Omarion Hampton", pts: 7.50 },
+                        { pos: "TE", name: "Brock Bowers", pts: 8.80 },
+                        { pos: "W/R/T", name: "Ashton Jeanty", pts: 8.20 },
+                        { pos: "Q/W", name: "Bryce Young", pts: 15.42 },
+                        { pos: "DEF", name: "49ers", pts: 0.00 }
+                    ]
+                }
+            },
+            qf2: {
+                title: "Week 15 - Quarterfinal",
+                team1: { name: "Gamehendge Comets", manager: "Steve Z", record: "7-7-0 | 6th", score: 154.06, isWinner: false },
+                team2: { name: "CMC", manager: "chris", record: "9-5-0 | 4th", score: 178.16, isWinner: true },
+                players: {
+                    team1: [
+                        { pos: "QB", name: "C.J. Stroud", pts: 24.90 },
+                        { pos: "WR", name: "DeVonta Smith", pts: 7.00 },
+                        { pos: "WR", name: "Nico Collins", pts: 25.50 },
+                        { pos: "WR", name: "Jaylen Waddle", pts: 4.60 },
+                        { pos: "RB", name: "Bijan Robinson", pts: 29.50 },
+                        { pos: "RB", name: "Bucky Irving", pts: 8.10 },
+                        { pos: "TE", name: "Harold Fannin Jr.", pts: 12.00 },
+                        { pos: "W/R/T", name: "Kenneth Walker III", pts: 2.90 },
+                        { pos: "Q/W", name: "Jacoby Brissett", pts: 21.56 },
+                        { pos: "DEF", name: "Bears", pts: 18.00 }
+                    ],
+                    team2: [
+                        { pos: "QB", name: "Lamar Jackson", pts: 15.60 },
+                        { pos: "WR", name: "Terry McLaurin", pts: 17.90 },
+                        { pos: "WR", name: "DJ Moore", pts: 22.90 },
+                        { pos: "WR", name: "Chris Godwin Jr.", pts: 14.00 },
+                        { pos: "RB", name: "Jonathan Taylor", pts: 13.10 },
+                        { pos: "RB", name: "Travis Etienne Jr.", pts: 33.50 },
+                        { pos: "TE", name: "Travis Kelce", pts: 14.00 },
+                        { pos: "W/R/T", name: "Josh Jacobs", pts: 25.20 },
+                        { pos: "Q/W", name: "Dak Prescott", pts: 11.96 },
+                        { pos: "DEF", name: "Jaguars", pts: 10.00 }
+                    ]
+                }
+            },
+            sf1: {
+                title: "Week 16 - Semifinal",
+                team1: { name: "CCR", manager: "AdamR", record: "8-6-0 | 1st", score: 186.08, isWinner: true },
+                team2: { name: "Who Flung Puka", manager: "Matthew Brian", record: "11-2-1 | 3rd", score: 175.86, isWinner: false },
+                players: {
+                    team1: [
+                        { pos: "QB", name: "Brock Purdy", pts: 31.90 },
+                        { pos: "WR", name: "Zay Flowers", pts: 21.20 },
+                        { pos: "WR", name: "Jaxon Smith-Njigba", pts: 23.60 },
+                        { pos: "WR", name: "Deebo Samuel", pts: 6.50 },
+                        { pos: "RB", name: "Derrick Henry", pts: 22.80 },
+                        { pos: "RB", name: "Saquon Barkley", pts: 21.20 },
+                        { pos: "TE", name: "George Kittle", pts: 24.50 },
+                        { pos: "W/R/T", name: "Tony Pollard", pts: 10.20 },
+                        { pos: "Q/W", name: "Bo Nix", pts: 19.18 },
+                        { pos: "DEF", name: "Eagles", pts: 5.00 }
+                    ],
+                    team2: [
+                        { pos: "QB", name: "Aaron Rodgers", pts: 17.04 },
+                        { pos: "WR", name: "Jameson Williams", pts: 12.00 },
+                        { pos: "WR", name: "Mike Evans", pts: 14.10 },
+                        { pos: "WR", name: "George Pickens", pts: 26.00 },
+                        { pos: "RB", name: "Jahmyr Gibbs", pts: 22.80 },
+                        { pos: "RB", name: "Christian McCaffrey", pts: 32.60 },
+                        { pos: "TE", name: "Brenton Strange", pts: 14.90 },
+                        { pos: "W/R/T", name: "Tee Higgins", pts: 14.30 },
+                        { pos: "Q/W", name: "Tyler Shough", pts: 20.12 },
+                        { pos: "DEF", name: "Chiefs", pts: 2.00 }
+                    ]
+                }
+            },
+            sf2: {
+                title: "Week 16 - Semifinal",
+                team1: { name: "Saquon deez nutz", manager: "Jason", record: "9-5-0 | 2nd", score: 159.20, isWinner: true },
+                team2: { name: "CMC", manager: "chris", record: "9-5-0 | 4th", score: 123.00, isWinner: false },
+                players: {
+                    team1: [
+                        { pos: "QB", name: "Josh Allen", pts: 6.90 },
+                        { pos: "WR", name: "DK Metcalf", pts: 8.20 },
+                        { pos: "WR", name: "Ladd McConkey", pts: 14.30 },
+                        { pos: "WR", name: "Jordan Addison", pts: 4.60 },
+                        { pos: "RB", name: "Breece Hall", pts: 8.30 },
+                        { pos: "RB", name: "De'Von Achane", pts: 20.00 },
+                        { pos: "TE", name: "T.J. Hockenson", pts: 1.20 },
+                        { pos: "W/R/T", name: "Puka Nacua", pts: 54.50 },
+                        { pos: "Q/W", name: "Justin Herbert", pts: 33.20 },
+                        { pos: "DEF", name: "Bills", pts: 8.00 }
+                    ],
+                    team2: [
+                        { pos: "QB", name: "Dak Prescott", pts: 19.16 },
+                        { pos: "WR", name: "Terry McLaurin", pts: 8.30 },
+                        { pos: "WR", name: "Chris Godwin Jr.", pts: 8.00 },
+                        { pos: "WR", name: "DJ Moore", pts: 23.90 },
+                        { pos: "RB", name: "Josh Jacobs", pts: 4.80 },
+                        { pos: "RB", name: "Travis Etienne Jr.", pts: 16.60 },
+                        { pos: "TE", name: "Travis Kelce", pts: 1.60 },
+                        { pos: "W/R/T", name: "Jonathan Taylor", pts: 16.90 },
+                        { pos: "Q/W", name: "Lamar Jackson", pts: 4.74 },
+                        { pos: "DEF", name: "Saints", pts: 19.00 }
+                    ]
+                }
+            },
+            final: {
+                title: "Week 17 - Championship",
+                team1: { name: "CCR", manager: "AdamR", record: "8-6-0 | 1st", score: 187.50, isWinner: true },
+                team2: { name: "Saquon deez nutz", manager: "Jason", record: "9-5-0 | 2nd", score: 117.52, isWinner: false },
+                players: {
+                    team1: [
+                        { pos: "QB", name: "Brock Purdy", pts: 40.92 },
+                        { pos: "WR", name: "Zay Flowers", pts: 13.00 },
+                        { pos: "WR", name: "Jaxon Smith-Njigba", pts: 16.20 },
+                        { pos: "WR", name: "Parker Washington", pts: 19.00 },
+                        { pos: "RB", name: "Derrick Henry", pts: 51.60 },
+                        { pos: "RB", name: "Saquon Barkley", pts: 6.80 },
+                        { pos: "TE", name: "Darren Waller", pts: 1.00 },
+                        { pos: "W/R/T", name: "Tony Pollard", pts: 11.50 },
+                        { pos: "Q/W", name: "Bo Nix", pts: 20.48 },
+                        { pos: "DEF", name: "Jaguars", pts: 7.00 }
+                    ],
+                    team2: [
+                        { pos: "QB", name: "Josh Allen", pts: 23.18 },
+                        { pos: "WR", name: "Ladd McConkey", pts: 4.10 },
+                        { pos: "WR", name: "Jordan Addison", pts: 14.50 },
+                        { pos: "WR", name: "Rashid Shaheed", pts: 1.80 },
+                        { pos: "RB", name: "Breece Hall", pts: 22.90 },
+                        { pos: "RB", name: "De'Von Achane", pts: 14.20 },
+                        { pos: "TE", name: "(Empty)", pts: 0.00 },
+                        { pos: "W/R/T", name: "Puka Nacua", pts: 15.70 },
+                        { pos: "Q/W", name: "Justin Herbert", pts: 16.14 },
+                        { pos: "DEF", name: "Bills", pts: 5.00 }
+                    ]
+                }
+            }
+        };
+
+        function showMatchup(id) {
+            const data = matchupData[id];
+            if (!data) return;
+
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            title.textContent = data.title;
+
+            let html = `
+                <div class="matchup-header">
+                    <div class="team-detail ${data.team1.isWinner ? 'winner-detail' : ''}">
+                        <h3>${data.team1.name} ${data.team1.isWinner ? '🏆' : ''}</h3>
+                        <div class="record">${data.team1.manager} | ${data.team1.record}</div>
+                        <div class="score">${data.team1.score}</div>
+                    </div>
+                    <div class="vs-text">VS</div>
+                    <div class="team-detail ${data.team2.isWinner ? 'winner-detail' : ''}">
+                        <h3>${data.team2.name} ${data.team2.isWinner ? '🏆' : ''}</h3>
+                        <div class="record">${data.team2.manager} | ${data.team2.record}</div>
+                        <div class="score">${data.team2.score}</div>
+                    </div>
+                </div>
+
+                <div class="players-section">
+                    <h4>Roster Comparison</h4>
+                    <table class="players-table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>${data.team1.name}</th>
+                                <th style="text-align:right">Pts</th>
+                                <th style="text-align:right">Pts</th>
+                                <th>${data.team2.name}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            for (let i = 0; i < data.players.team1.length; i++) {
+                const p1 = data.players.team1[i];
+                const p2 = data.players.team2[i];
+                const p1Class = p1.pts > p2.pts ? 'winner-pts' : (p1.pts < p2.pts ? 'loser-pts' : '');
+                const p2Class = p2.pts > p1.pts ? 'winner-pts' : (p2.pts < p1.pts ? 'loser-pts' : '');
+
+                html += `
+                    <tr>
+                        <td class="pos-col">${p1.pos}</td>
+                        <td>${p1.name}</td>
+                        <td class="pts-col ${p1Class}">${p1.pts.toFixed(2)}</td>
+                        <td class="pts-col ${p2Class}">${p2.pts.toFixed(2)}</td>
+                        <td>${p2.name}</td>
+                    </tr>
+                `;
+            }
+
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            body.innerHTML = html;
+            modal.classList.add('active');
+        }
+
+        function closeModal(event) {
+            if (!event || event.target === document.getElementById('modal')) {
+                document.getElementById('modal').classList.remove('active');
+            }
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
