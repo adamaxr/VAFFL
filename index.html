@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 VAFFL Season Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-size: 13px;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .team-name {
+            text-align: left;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .total {
+            font-weight: bold;
+            background-color: #ecf0f1;
+        }
+        .gold {
+            background-color: #ffd700;
+            font-weight: bold;
+        }
+        .silver {
+            background-color: #c0c0c0;
+            font-weight: bold;
+        }
+        .tomato {
+            background-color: #ff6347;
+            color: white;
+            font-weight: bold;
+        }
+        .summary-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        .summary-box ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .summary-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .medal-table {
+            width: auto;
+            margin: 20px auto;
+        }
+        .medal-table th, .medal-table td {
+            padding: 10px 20px;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+        }
+        .generated {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>2025 VAFFL Season Report</h1>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-box" style="background-color: #ffd700;"></div>
+            <span>Weekly Highest</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box" style="background-color: #c0c0c0;"></div>
+            <span>Weekly 2nd Highest</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box" style="background-color: #ff6347;"></div>
+            <span>Weekly Lowest</span>
+        </div>
+    </div>
+
+    <h2>Season Standings & Weekly Scores</h2>
+    <table>
+        <tr>
+            <th>Team</th>
+            <th>W1</th>
+            <th>W2</th>
+            <th>W3</th>
+            <th>W4</th>
+            <th>W5</th>
+            <th>W6</th>
+            <th>W7</th>
+            <th>W8</th>
+            <th>W9</th>
+            <th>W10</th>
+            <th>W11</th>
+            <th>W12</th>
+            <th>W13</th>
+            <th>W14</th>
+            <th>TOTAL</th>
+        </tr>
+        <tr>
+            <td class="team-name">Who Flung Puka</td>
+            <td>137.94</td>
+            <td>155.40</td>
+            <td class="silver">157.70</td>
+            <td class="silver">177.18</td>
+            <td class="silver">184.46</td>
+            <td>145.84</td>
+            <td class="gold">196.86</td>
+            <td>144.46</td>
+            <td class="gold">189.50</td>
+            <td>138.94</td>
+            <td class="gold">167.24</td>
+            <td class="gold">205.54</td>
+            <td>125.36</td>
+            <td class="silver">155.56</td>
+            <td class="total">2,281.98</td>
+        </tr>
+        <tr>
+            <td class="team-name">Saquon deez nutz</td>
+            <td class="gold">190.38</td>
+            <td>137.00</td>
+            <td>142.22</td>
+            <td>170.38</td>
+            <td>170.56</td>
+            <td class="silver">156.26</td>
+            <td>145.10</td>
+            <td class="gold">184.36</td>
+            <td>168.92</td>
+            <td>179.44</td>
+            <td>138.12</td>
+            <td>111.62</td>
+            <td>145.16</td>
+            <td class="gold">161.14</td>
+            <td class="total">2,200.66</td>
+        </tr>
+        <tr>
+            <td class="team-name">CCR</td>
+            <td class="silver">163.02</td>
+            <td class="silver">161.08</td>
+            <td>107.84</td>
+            <td>136.10</td>
+            <td>137.16</td>
+            <td>124.14</td>
+            <td>157.78</td>
+            <td class="silver">163.36</td>
+            <td>137.40</td>
+            <td>144.20</td>
+            <td>151.50</td>
+            <td class="silver">172.66</td>
+            <td>109.08</td>
+            <td>115.58</td>
+            <td class="total">1,980.90</td>
+        </tr>
+        <tr>
+            <td class="team-name">Rockets</td>
+            <td>150.88</td>
+            <td>117.18</td>
+            <td>148.44</td>
+            <td class="gold">183.20</td>
+            <td class="tomato">126.92</td>
+            <td>132.82</td>
+            <td class="tomato">127.26</td>
+            <td>148.48</td>
+            <td class="silver">185.76</td>
+            <td class="tomato">120.00</td>
+            <td>104.26</td>
+            <td>147.82</td>
+            <td>143.34</td>
+            <td>128.22</td>
+            <td class="total">1,964.58</td>
+        </tr>
+        <tr>
+            <td class="team-name">CMC</td>
+            <td>103.78</td>
+            <td>157.04</td>
+            <td>139.66</td>
+            <td>162.14</td>
+            <td>143.62</td>
+            <td>135.14</td>
+            <td>160.74</td>
+            <td>125.44</td>
+            <td>137.54</td>
+            <td class="silver">185.06</td>
+            <td>108.84</td>
+            <td>152.68</td>
+            <td class="tomato">103.94</td>
+            <td>132.20</td>
+            <td class="total">1,947.82</td>
+        </tr>
+        <tr>
+            <td class="team-name">Gamehendge Comets</td>
+            <td class="tomato">95.94</td>
+            <td>141.48</td>
+            <td class="gold">157.72</td>
+            <td>159.22</td>
+            <td>144.66</td>
+            <td>123.12</td>
+            <td class="silver">162.40</td>
+            <td>155.02</td>
+            <td class="tomato">107.90</td>
+            <td>137.80</td>
+            <td>134.28</td>
+            <td>140.14</td>
+            <td>139.08</td>
+            <td>139.26</td>
+            <td class="total">1,938.02</td>
+        </tr>
+        <tr>
+            <td class="team-name">Angry Dragon</td>
+            <td>123.90</td>
+            <td>112.92</td>
+            <td>124.52</td>
+            <td class="tomato">126.74</td>
+            <td>148.62</td>
+            <td class="gold">159.14</td>
+            <td>130.08</td>
+            <td>125.22</td>
+            <td>169.00</td>
+            <td>140.48</td>
+            <td>120.92</td>
+            <td>143.70</td>
+            <td class="silver">150.16</td>
+            <td class="silver">155.56</td>
+            <td class="total">1,930.96</td>
+        </tr>
+        <tr>
+            <td class="team-name">Velvet Evolver</td>
+            <td>107.42</td>
+            <td class="gold">175.48</td>
+            <td>138.92</td>
+            <td>161.52</td>
+            <td>134.58</td>
+            <td>136.76</td>
+            <td>156.92</td>
+            <td>127.26</td>
+            <td>151.90</td>
+            <td>158.00</td>
+            <td class="tomato">95.40</td>
+            <td class="tomato">111.38</td>
+            <td class="gold">159.36</td>
+            <td>114.60</td>
+            <td class="total">1,929.50</td>
+        </tr>
+        <tr>
+            <td class="team-name">Trailer Parkansas</td>
+            <td>110.24</td>
+            <td class="tomato">98.82</td>
+            <td class="tomato">105.32</td>
+            <td>146.72</td>
+            <td>171.22</td>
+            <td>134.86</td>
+            <td>127.72</td>
+            <td>147.42</td>
+            <td>145.86</td>
+            <td class="gold">186.42</td>
+            <td class="silver">153.20</td>
+            <td>131.20</td>
+            <td class="tomato">102.00</td>
+            <td>119.92</td>
+            <td class="total">1,880.92</td>
+        </tr>
+        <tr>
+            <td class="team-name">Steel 'er Face</td>
+            <td>126.10</td>
+            <td>153.70</td>
+            <td>156.68</td>
+            <td>155.24</td>
+            <td class="gold">187.30</td>
+            <td class="tomato">119.18</td>
+            <td>144.96</td>
+            <td class="tomato">77.32</td>
+            <td class="tomato">100.68</td>
+            <td>127.84</td>
+            <td>99.44</td>
+            <td>133.84</td>
+            <td>134.86</td>
+            <td class="tomato">98.50</td>
+            <td class="total">1,815.64</td>
+        </tr>
+    </table>
+
+    <h2>Summary</h2>
+    <div class="summary-box">
+        <ul>
+            <li><strong>Most Weekly Golds (Highest):</strong> Who Flung Puka (4 weeks: 7, 9, 11, 12)</li>
+            <li><strong>Most Weekly Silvers (2nd Highest):</strong> Who Flung Puka & CCR (tied with 4 each)</li>
+            <li><strong>Most Weekly Tomatoes (Lowest):</strong> Steel 'er Face (4 weeks: 6, 8, 9, 14)</li>
+            <li><strong>Highest Single Week:</strong> Who Flung Puka Week 12 - 205.54</li>
+            <li><strong>Lowest Single Week:</strong> Steel 'er Face Week 8 - 77.32</li>
+            <li><strong>Week 14 Tie:</strong> Who Flung Puka & Angry Dragon both scored 155.56</li>
+        </ul>
+    </div>
+
+    <h2>Medal Count (sorted by Gold)</h2>
+    <table class="medal-table">
+        <tr>
+            <th>Team</th>
+            <th style="background-color: #ffd700; color: black;">Gold</th>
+            <th style="background-color: #c0c0c0; color: black;">Silver</th>
+            <th style="background-color: #ff6347;">Tomato</th>
+        </tr>
+        <tr>
+            <td class="team-name">Who Flung Puka</td>
+            <td>4</td>
+            <td>4</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td class="team-name">Saquon deez nutz</td>
+            <td>3</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td class="team-name">Velvet Evolver</td>
+            <td>2</td>
+            <td>0</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td class="team-name">Rockets</td>
+            <td>1</td>
+            <td>1</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td class="team-name">Steel 'er Face</td>
+            <td>1</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td class="team-name">Trailer Parkansas</td>
+            <td>1</td>
+            <td>1</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td class="team-name">Gamehendge Comets</td>
+            <td>1</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td class="team-name">Angry Dragon</td>
+            <td>1</td>
+            <td>2</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td class="team-name">CCR</td>
+            <td>0</td>
+            <td>4</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td class="team-name">CMC</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+    <p class="generated">Generated by Claude Code - January 2026</p>
+</body>
+</html>
