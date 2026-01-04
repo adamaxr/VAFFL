@@ -15,7 +15,29 @@
         .container { max-width: 1400px; margin: 0 auto; }
         .back-link { display: inline-block; color: #ffd700; text-decoration: none; margin-bottom: 20px; }
         .back-link:hover { text-decoration: underline; }
-        h1 { text-align: center; color: #ffd700; margin-bottom: 30px; }
+        h1 { text-align: center; color: #ffd700; margin-bottom: 20px; }
+        .year-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .year-nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 20px;
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .year-nav a:hover {
+            background: #ffd700;
+            color: #1a1a2e;
+        }
+        .year-nav a.active {
+            background: #ffd700;
+            color: #1a1a2e;
+        }
         .draft-board {
             background: rgba(255,255,255,0.1);
             border-radius: 15px;
@@ -39,6 +61,11 @@
     <div class="container">
         <a href="index.html" class="back-link">&larr; Back to Home</a>
         <h1>2025 Draft Results</h1>
+        <nav class="year-nav">
+            <a href="2025-draft.html" class="active">2025</a>
+            <a href="2024-draft.html">2024</a>
+            <a href="2023-draft.html">2023</a>
+        </nav>
         <div class="draft-board">
             <a href="draft results/2025  draft results board.jpg" target="_blank">
                 <img src="draft results/2025  draft results board.jpg" alt="2025 VAFFL Draft Board">

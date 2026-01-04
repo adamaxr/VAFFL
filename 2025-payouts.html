@@ -12,7 +12,7 @@
             color: #fff;
             padding: 20px;
         }
-        .container { max-width: 800px; margin: 0 auto; }
+        .container { max-width: 900px; margin: 0 auto; }
         .back-link { display: inline-block; color: #ffd700; text-decoration: none; margin-bottom: 20px; }
         .back-link:hover { text-decoration: underline; }
         h1 { text-align: center; color: #ffd700; margin-bottom: 10px; }
@@ -23,21 +23,21 @@
             padding: 30px;
             margin-bottom: 20px;
         }
-        .payout-table { width: 100%; border-collapse: collapse; }
-        .payout-table th, .payout-table td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .payout-table th { color: #ffd700; font-size: 1.1rem; }
-        .place { font-weight: bold; font-size: 1.2rem; }
+        .payout-card h3 { color: #ffd700; margin-bottom: 15px; }
+        .payout-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .payout-table th, .payout-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .payout-table th { color: #ffd700; font-size: 1rem; }
+        .place { font-weight: bold; }
         .first { color: #ffd700; }
         .second { color: #c0c0c0; }
         .third { color: #cd7f32; }
         .fourth { color: #888; }
-        .amount { font-weight: bold; font-size: 1.3rem; color: #4ade80; }
+        .amount { font-weight: bold; color: #4ade80; }
         .team { color: #fff; }
-        .bonus-section { margin-top: 30px; }
-        .bonus-section h3 { color: #ffd700; margin-bottom: 15px; }
-        .bonus-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .bonus-label { color: #aaa; }
-        .bonus-amount { color: #4ade80; font-weight: bold; }
+        .weeks { font-size: 0.85rem; color: #888; }
+        .total-row { background: rgba(255,215,0,0.1); }
+        .total-row td { font-weight: bold; color: #ffd700; }
+        .section-title { color: #ffd700; margin: 30px 0 15px 0; font-size: 1.2rem; }
     </style>
 </head>
 <body>
@@ -47,6 +47,7 @@
         <p class="entry-info">$500 Entry | $5,000 Pot</p>
 
         <div class="payout-card">
+            <h3>Playoff Finish</h3>
             <table class="payout-table">
                 <tr>
                     <th>Place</th>
@@ -75,17 +76,132 @@
                 </tr>
             </table>
 
-            <div class="bonus-section">
-                <h3>Bonus Payouts</h3>
-                <div class="bonus-item">
-                    <span class="bonus-label">Season High Points</span>
-                    <span class="bonus-amount">$220</span>
-                </div>
-                <div class="bonus-item">
-                    <span class="bonus-label">Weekly High Points</span>
-                    <span class="bonus-amount">$70/week</span>
-                </div>
-            </div>
+            <h3>Season High Points - $220</h3>
+            <table class="payout-table">
+                <tr>
+                    <th>Team</th>
+                    <th>Points</th>
+                    <th>Payout</th>
+                </tr>
+                <tr>
+                    <td class="team">Who Flung Puka</td>
+                    <td>2,281.98</td>
+                    <td class="amount">$220</td>
+                </tr>
+            </table>
+
+            <h3>Weekly High Points - $70/week</h3>
+            <table class="payout-table">
+                <tr>
+                    <th>Team</th>
+                    <th>Weeks Won</th>
+                    <th>Payout</th>
+                </tr>
+                <tr>
+                    <td class="team">Who Flung Puka</td>
+                    <td class="weeks">Wk 7, 9, 11, 12</td>
+                    <td class="amount">$280</td>
+                </tr>
+                <tr>
+                    <td class="team">Saquon deez nutz</td>
+                    <td class="weeks">Wk 1, 8, 14</td>
+                    <td class="amount">$210</td>
+                </tr>
+                <tr>
+                    <td class="team">Velvet Evolver</td>
+                    <td class="weeks">Wk 2, 13</td>
+                    <td class="amount">$140</td>
+                </tr>
+                <tr>
+                    <td class="team">Gamehendge Comets</td>
+                    <td class="weeks">Wk 3</td>
+                    <td class="amount">$70</td>
+                </tr>
+                <tr>
+                    <td class="team">Rockets</td>
+                    <td class="weeks">Wk 4</td>
+                    <td class="amount">$70</td>
+                </tr>
+                <tr>
+                    <td class="team">Steel 'er Face</td>
+                    <td class="weeks">Wk 5</td>
+                    <td class="amount">$70</td>
+                </tr>
+                <tr>
+                    <td class="team">Angry Dragon</td>
+                    <td class="weeks">Wk 6</td>
+                    <td class="amount">$70</td>
+                </tr>
+                <tr>
+                    <td class="team">Trailer Parkansas</td>
+                    <td class="weeks">Wk 10</td>
+                    <td class="amount">$70</td>
+                </tr>
+            </table>
+
+            <h3>Total Payouts by Team</h3>
+            <table class="payout-table">
+                <tr>
+                    <th>Team</th>
+                    <th>Breakdown</th>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td class="team">CCR</td>
+                    <td class="weeks">1st Place</td>
+                    <td class="amount">$1,800</td>
+                </tr>
+                <tr>
+                    <td class="team">Saquon deez nutz</td>
+                    <td class="weeks">2nd + 3 Weekly HP</td>
+                    <td class="amount">$1,310</td>
+                </tr>
+                <tr>
+                    <td class="team">Who Flung Puka</td>
+                    <td class="weeks">3rd + Season HP + 4 Weekly HP</td>
+                    <td class="amount">$1,100</td>
+                </tr>
+                <tr>
+                    <td class="team">CMC</td>
+                    <td class="weeks">4th Place</td>
+                    <td class="amount">$300</td>
+                </tr>
+                <tr>
+                    <td class="team">Velvet Evolver</td>
+                    <td class="weeks">2 Weekly HP</td>
+                    <td class="amount">$140</td>
+                </tr>
+                <tr>
+                    <td class="team">Gamehendge Comets</td>
+                    <td class="weeks">1 Weekly HP</td>
+                    <td class="amount">$70</td>
+                </tr>
+                <tr>
+                    <td class="team">Rockets</td>
+                    <td class="weeks">1 Weekly HP</td>
+                    <td class="amount">$70</td>
+                </tr>
+                <tr>
+                    <td class="team">Steel 'er Face</td>
+                    <td class="weeks">1 Weekly HP</td>
+                    <td class="amount">$70</td>
+                </tr>
+                <tr>
+                    <td class="team">Angry Dragon</td>
+                    <td class="weeks">1 Weekly HP</td>
+                    <td class="amount">$70</td>
+                </tr>
+                <tr>
+                    <td class="team">Trailer Parkansas</td>
+                    <td class="weeks">1 Weekly HP</td>
+                    <td class="amount">$70</td>
+                </tr>
+                <tr class="total-row">
+                    <td>TOTAL</td>
+                    <td></td>
+                    <td>$5,000</td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
