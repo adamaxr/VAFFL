@@ -60,6 +60,12 @@
         .players-table td { padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .pos-col { text-align: center; font-weight: bold; color: #888; width: 50px; }
         .pts-col { font-weight: bold; text-align: right; }
+        .bench-section { margin-top: 15px; }
+        .bench-title { color: #888; font-size: 0.9rem; margin-bottom: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px; text-align: center; cursor: pointer; }
+        .bench-title:hover { background: rgba(255,255,255,0.1); }
+        .bench-players { display: none; }
+        .bench-players.show { display: block; }
+        .bench-players .players-table td { color: #888; }
 
         @media (max-width: 900px) {
             .bracket { flex-direction: column; }
@@ -151,6 +157,26 @@
                         { pos: "Q/W", name: "Jordan Love", team: "GB", pts: 17.05 },
                         { pos: "DEF", name: "Green Bay", team: "GB", pts: 44.00 }
                     ]
+                },
+                bench: {
+                    team1: [
+                        { pos: "TE", name: "T.J. Hockenson", team: "Min", pts: 4.70 },
+                        { pos: "RB", name: "Rico Dowdle", team: "Dal", pts: 6.10 },
+                        { pos: "WR", name: "Adam Thielen", team: "Car", pts: 15.30 },
+                        { pos: "QB", name: "Cooper Rush", team: "Dal", pts: 15.28 },
+                        { pos: "WR", name: "Jalen McMillan", team: "TB", pts: 15.90 },
+                        { pos: "DEF", name: "Denver", team: "Den", pts: 3.00 },
+                        { pos: "QB", name: "Trevor Lawrence", team: "Jax", pts: 0.00 }
+                    ],
+                    team2: [
+                        { pos: "WR", name: "George Pickens", team: "Pit", pts: 0.00 },
+                        { pos: "RB", name: "Tank Bigsby", team: "Jax", pts: 16.10 },
+                        { pos: "QB", name: "Justin Herbert", team: "LAC", pts: 23.16 },
+                        { pos: "RB", name: "Javonte Williams", team: "Den", pts: 9.02 },
+                        { pos: "TE", name: "Jake Ferguson", team: "Dal", pts: 18.00 },
+                        { pos: "RB", name: "Kareem Hunt", team: "KC", pts: 10.70 },
+                        { pos: "RB", name: "Blake Corum", team: "LAR", pts: 0.00 }
+                    ]
                 }
             },
             sf2: {
@@ -183,6 +209,26 @@
                         { pos: "Q/W", name: "Matthew Stafford", team: "LAR", pts: 7.00 },
                         { pos: "DEF", name: "Minnesota", team: "Min", pts: 38.00 }
                     ]
+                },
+                bench: {
+                    team1: [
+                        { pos: "WR", name: "Michael Pittman Jr", team: "Ind", pts: 3.90 },
+                        { pos: "QB", name: "Geno Smith", team: "Sea", pts: 26.36 },
+                        { pos: "RB", name: "Najee Harris", team: "Pit", pts: 4.20 },
+                        { pos: "RB", name: "Kendre Miller", team: "NO", pts: 5.10 },
+                        { pos: "RB", name: "Patrick Taylor Jr", team: "Jax", pts: 3.50 },
+                        { pos: "DEF", name: "Los Angeles Rams", team: "LAR", pts: 2.00 },
+                        { pos: "RB", name: "David Montgomery", team: "Det", pts: 0.00 }
+                    ],
+                    team2: [
+                        { pos: "RB", name: "Alvin Kamara", team: "NO", pts: 0.00 },
+                        { pos: "WR", name: "Darnell Mooney", team: "Atl", pts: 8.20 },
+                        { pos: "WR", name: "Calvin Ridley", team: "Ten", pts: 16.60 },
+                        { pos: "TE", name: "Tucker Kraft", team: "GB", pts: 5.70 },
+                        { pos: "RB", name: "Travis Etienne Jr", team: "Jax", pts: 10.47 },
+                        { pos: "QB", name: "Michael Penix Jr", team: "Atl", pts: 5.13 },
+                        { pos: "RB", name: "J.K. Dobbins", team: "LAC", pts: 0.00 }
+                    ]
                 }
             },
             final: {
@@ -213,6 +259,25 @@
                         { pos: "W/R/T", name: "Jerome Ford", team: "Cle", pts: 2.20 },
                         { pos: "Q/W", name: "Matthew Stafford", team: "LAR", pts: 9.16 },
                         { pos: "DEF", name: "Seattle", team: "Sea", pts: 14.49 }
+                    ]
+                },
+                bench: {
+                    team1: [
+                        { pos: "RB", name: "Tank Bigsby", team: "Jax", pts: 5.70 },
+                        { pos: "QB", name: "Justin Herbert", team: "LAC", pts: 19.50 },
+                        { pos: "TE", name: "Jake Ferguson", team: "Dal", pts: 0.00 },
+                        { pos: "WR", name: "Romeo Doubs", team: "GB", pts: 0.00 },
+                        { pos: "DEF", name: "Tampa Bay", team: "TB", pts: 7.38 },
+                        { pos: "DEF", name: "Las Vegas", team: "LV", pts: 8.59 }
+                    ],
+                    team2: [
+                        { pos: "WR", name: "Darnell Mooney", team: "Atl", pts: 17.17 },
+                        { pos: "WR", name: "Tyreek Hill", team: "Mia", pts: 13.49 },
+                        { pos: "QB", name: "Tua Tagovailoa", team: "Mia", pts: 0.00 },
+                        { pos: "RB", name: "Alvin Kamara", team: "NO", pts: 0.00 },
+                        { pos: "TE", name: "Tucker Kraft", team: "GB", pts: 5.51 },
+                        { pos: "RB", name: "Travis Etienne Jr", team: "Jax", pts: 9.13 },
+                        { pos: "RB", name: "J.K. Dobbins", team: "LAC", pts: 13.13 }
                     ]
                 }
             },
@@ -245,6 +310,25 @@
                         { pos: "Q/W", name: "Geno Smith", team: "Sea", pts: 8.30 },
                         { pos: "DEF", name: "Los Angeles Rams", team: "LAR", pts: 28.54 }
                     ]
+                },
+                bench: {
+                    team1: [
+                        { pos: "TE", name: "David Njoku", team: "Cle", pts: 0.00 },
+                        { pos: "WR", name: "CeeDee Lamb", team: "Dal", pts: 0.00 },
+                        { pos: "RB", name: "Rico Dowdle", team: "Dal", pts: 2.00 },
+                        { pos: "QB", name: "Cooper Rush", team: "Dal", pts: 8.88 },
+                        { pos: "WR", name: "Jalen McMillan", team: "TB", pts: 13.30 },
+                        { pos: "DEF", name: "Denver", team: "Den", pts: 13.00 },
+                        { pos: "QB", name: "Trevor Lawrence", team: "Jax", pts: 0.00 }
+                    ],
+                    team2: [
+                        { pos: "WR", name: "Michael Pittman Jr", team: "Ind", pts: 0.00 },
+                        { pos: "RB", name: "Najee Harris", team: "Pit", pts: 0.00 },
+                        { pos: "RB", name: "Patrick Taylor Jr", team: "Jax", pts: 10.19 },
+                        { pos: "RB", name: "Tyler Spears", team: "Jax", pts: 0.00 },
+                        { pos: "DEF", name: "Buffalo", team: "Buf", pts: 0.00 },
+                        { pos: "RB", name: "David Montgomery", team: "Det", pts: 0.00 }
+                    ]
                 }
             }
         };
@@ -260,6 +344,17 @@
             title.textContent = data.title;
 
             let marginHtml = data.margin ? `<p style="text-align:center;color:#ffd700;font-style:italic;margin:10px 0;">${data.margin}</p>` : '';
+
+            let bench1Html = data.bench ? `
+                <div class="bench-section">
+                    <div class="bench-title" onclick="this.nextElementSibling.classList.toggle('show')">▼ Bench Players</div>
+                    <div class="bench-players">${renderPlayerTable(data.bench.team1, true)}</div>
+                </div>` : '';
+            let bench2Html = data.bench ? `
+                <div class="bench-section">
+                    <div class="bench-title" onclick="this.nextElementSibling.classList.toggle('show')">▼ Bench Players</div>
+                    <div class="bench-players">${renderPlayerTable(data.bench.team2, true)}</div>
+                </div>` : '';
 
             let html = `
                 <div class="matchup-header">
@@ -280,10 +375,12 @@
                     <div class="team-column">
                         <h4>${data.team1.name} - ${data.team1.score} pts</h4>
                         ${renderPlayerTable(data.starters.team1)}
+                        ${bench1Html}
                     </div>
                     <div class="team-column">
                         <h4>${data.team2.name} - ${data.team2.score} pts</h4>
                         ${renderPlayerTable(data.starters.team2)}
+                        ${bench2Html}
                     </div>
                 </div>
             `;
@@ -293,15 +390,15 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function renderPlayerTable(players) {
+        function renderPlayerTable(players, isBench = false) {
             let html = `<table class="players-table">
                 <thead><tr><th>Pos</th><th>Player</th><th style="text-align:right">Pts</th></tr></thead>
                 <tbody>`;
             players.forEach(p => {
                 html += `<tr>
                     <td class="pos-col">${p.pos}</td>
-                    <td>${p.name} <small style="color:#888">${p.team}</small></td>
-                    <td class="pts-col">${p.pts.toFixed(2)}</td>
+                    <td>${p.name} <small style="color:#666">${p.team}</small></td>
+                    <td class="pts-col" style="${isBench ? 'color:#666' : ''}">${p.pts.toFixed(2)}</td>
                 </tr>`;
             });
             html += '</tbody></table>';
