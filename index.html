@@ -23,13 +23,10 @@
         }
 
         /* Main Layout */
-        .main-layout {
+        .seasons-layout {
             display: flex;
             gap: 40px;
             align-items: flex-start;
-        }
-        .content-side {
-            flex: 1;
         }
         .trophy-side {
             flex-shrink: 0;
@@ -51,12 +48,6 @@
             font-size: 3.5rem;
             color: #ffd700;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            margin-bottom: 10px;
-        }
-        .tagline {
-            font-size: 1.2rem;
-            color: #a0a0a0;
-            font-style: italic;
         }
 
         /* Navigation Links */
@@ -82,7 +73,7 @@
 
         /* Season Sections */
         .seasons {
-            margin-top: 30px;
+            flex: 1;
         }
         .season-card {
             background: rgba(255,255,255,0.1);
@@ -143,13 +134,14 @@
 
         /* Responsive */
         @media (max-width: 800px) {
-            .main-layout {
-                flex-direction: column-reverse;
+            .seasons-layout {
+                flex-direction: column;
             }
             .trophy-side {
                 position: static;
                 text-align: center;
                 width: 100%;
+                order: -1;
             }
             .trophy-img {
                 max-width: 200px;
@@ -172,54 +164,51 @@
 </head>
 <body>
     <div class="container">
-        <div class="main-layout">
-            <div class="content-side">
-                <header class="header">
-                    <h1>VAFFL</h1>
-                    <p class="tagline">Fantasy Football League</p>
-                </header>
+        <header class="header">
+            <h1>VAFFL</h1>
+        </header>
 
-                <nav class="nav-links">
-                    <a href="rules.html">Rules</a>
-                    <a href="voting.html">Voting</a>
-                </nav>
+        <nav class="nav-links">
+            <a href="rules.html">Rules</a>
+            <a href="voting.html">Voting</a>
+        </nav>
 
-                <section class="seasons">
-                    <div class="season-card">
-                        <h2>2025 Season</h2>
-                        <div class="season-links">
-                            <a href="2025.html" class="report">Season Report</a>
-                            <a href="2025-playoffs.html" class="playoffs">Playoffs</a>
-                            <a href="2025-payouts.html" class="payouts">Payouts</a>
-                        </div>
+        <div class="seasons-layout">
+            <section class="seasons">
+                <div class="season-card">
+                    <h2>2025 Season</h2>
+                    <div class="season-links">
+                        <a href="2025.html" class="report">Season Report</a>
+                        <a href="2025-playoffs.html" class="playoffs">Playoffs</a>
+                        <a href="2025-payouts.html" class="payouts">Payouts</a>
                     </div>
+                </div>
 
-                    <div class="season-card">
-                        <h2>2024 Season</h2>
-                        <div class="season-links">
-                            <a href="2024.html" class="report">Season Report</a>
-                            <a href="2024-payouts.html" class="payouts">Payouts</a>
-                        </div>
+                <div class="season-card">
+                    <h2>2024 Season</h2>
+                    <div class="season-links">
+                        <a href="2024.html" class="report">Season Report</a>
+                        <a href="2024-payouts.html" class="payouts">Payouts</a>
                     </div>
+                </div>
 
-                    <div class="season-card">
-                        <h2>2023 Season</h2>
-                        <div class="season-links">
-                            <a href="2023.html" class="report">Season Report</a>
-                            <a href="2023-payouts.html" class="payouts">Payouts</a>
-                        </div>
+                <div class="season-card">
+                    <h2>2023 Season</h2>
+                    <div class="season-links">
+                        <a href="2023.html" class="report">Season Report</a>
+                        <a href="2023-payouts.html" class="payouts">Payouts</a>
                     </div>
-                </section>
-
-                <footer class="footer">
-                    <p>VAFFL - Est. 2023</p>
-                </footer>
-            </div>
+                </div>
+            </section>
 
             <div class="trophy-side">
                 <img src="trophy.png" alt="VAFFL Trophy" class="trophy-img">
             </div>
         </div>
+
+        <footer class="footer">
+            <p>VAFFL - Est. 2023</p>
+        </footer>
     </div>
 </body>
 </html>
