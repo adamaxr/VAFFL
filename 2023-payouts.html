@@ -3,117 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2023 VAFFL Payouts</title>
+    <title>VAFFL 2023 Payouts - Under Construction</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
             padding: 20px;
         }
-        .container { max-width: 800px; margin: 0 auto; }
-        .back-link { display: inline-block; color: #ffd700; text-decoration: none; margin-bottom: 20px; }
-        .back-link:hover { text-decoration: underline; }
-        h1 { text-align: center; color: #ffd700; margin-bottom: 10px; }
-        .year-nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
+        .container {
+            text-align: center;
+        }
+        h1 {
+            color: #ffd700;
+            font-size: 2.5rem;
             margin-bottom: 20px;
         }
-        .year-nav a {
-            color: #fff;
+        .message {
+            font-size: 1.3rem;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            color: #ffd700;
             text-decoration: none;
-            padding: 8px 20px;
+            padding: 12px 30px;
             border: 2px solid #ffd700;
-            border-radius: 20px;
+            border-radius: 25px;
             transition: all 0.3s ease;
         }
-        .year-nav a:hover {
+        .back-link:hover {
             background: #ffd700;
             color: #1a1a2e;
         }
-        .year-nav a.active {
-            background: #ffd700;
-            color: #1a1a2e;
-        }
-        .entry-info { text-align: center; color: #888; margin-bottom: 30px; font-size: 1.1rem; }
-        .payout-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 20px;
-        }
-        .payout-table { width: 100%; border-collapse: collapse; }
-        .payout-table th, .payout-table td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .payout-table th { color: #ffd700; font-size: 1.1rem; }
-        .place { font-weight: bold; font-size: 1.2rem; }
-        .first { color: #ffd700; }
-        .second { color: #c0c0c0; }
-        .third { color: #cd7f32; }
-        .fourth { color: #888; }
-        .amount { font-weight: bold; font-size: 1.3rem; color: #4ade80; }
-        .team { color: #fff; }
-        .note { font-size: 0.85rem; color: #888; }
-        .bonus-section { margin-top: 30px; }
-        .bonus-section h3 { color: #ffd700; margin-bottom: 15px; }
-        .bonus-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .bonus-label { color: #aaa; }
-        .bonus-amount { color: #4ade80; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div style="background: linear-gradient(135deg, #ff6b6b, #ffa500); color: #000; text-align: center; padding: 15px; font-weight: bold; font-size: 1.2rem; position: sticky; top: 0; z-index: 9999;">
-        ⚠️ UNDER CONSTRUCTION - Data being verified ⚠️
-    </div>
     <div class="container">
+        <h1>2023 Payouts</h1>
+        <p class="message">Under Construction - Check back soon!</p>
         <a href="index.html" class="back-link">&larr; Back to Home</a>
-        <h1>2023 VAFFL Payouts</h1>
-        <nav class="year-nav">
-            <a href="2025-payouts.html">2025</a>
-            <a href="2024-payouts.html">2024</a>
-            <a href="2023-payouts.html" class="active">2023</a>
-        </nav>
-        <p class="entry-info">$400 Entry | $4,000 Pot</p>
-
-        <div class="payout-card">
-            <table class="payout-table">
-                <tr>
-                    <th>Place</th>
-                    <th>Team</th>
-                    <th>Payout</th>
-                </tr>
-                <tr>
-                    <td class="place first">1st</td>
-                    <td class="team">CCR</td>
-                    <td class="amount">$1,800</td>
-                </tr>
-                <tr>
-                    <td class="place second">2nd</td>
-                    <td class="team">Who Flung Puka</td>
-                    <td class="amount">$1,000</td>
-                </tr>
-                <tr>
-                    <td class="place third">3rd</td>
-                    <td class="team">Rockets <span class="note">(+ Season HP)</span></td>
-                    <td class="amount">$1,000</td>
-                </tr>
-                <tr>
-                    <td class="place fourth">4th</td>
-                    <td class="team">Shitz n Gigglez</td>
-                    <td class="amount">$200</td>
-                </tr>
-            </table>
-
-            <div class="bonus-section">
-                <h3>Bonus Payouts</h3>
-                <div class="bonus-item">
-                    <span class="bonus-label">Season High Points</span>
-                    <span class="bonus-amount">Included with 3rd place</span>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 </html>
