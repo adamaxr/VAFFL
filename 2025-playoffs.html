@@ -190,6 +190,12 @@
                     <div class="team-row"><span class="team-name">Saquon deez nutz</span><span class="team-score">117.52</span></div>
                     <div class="click-hint">Click for details</div>
                 </div>
+                <div class="round-title" style="margin-top: 20px;">Week 17 - 3rd Place</div>
+                <div class="matchup" onclick="showMatchup('third')">
+                    <div class="team-row"><span class="team-name">CMC</span><span class="team-score">122.26</span></div>
+                    <div class="team-row winner"><span class="team-name">Who Flung Puka 🥉</span><span class="team-score">145.30</span></div>
+                    <div class="click-hint">Click for details</div>
+                </div>
             </div>
         </div>
     </div>
@@ -399,6 +405,55 @@
                         { pos: "RB", name: "Jacory Croskey-Merritt", team: "Was", proj: 6.86, pts: 8.50, stats: "1 Rush TD, 25 Rush Yds", game: "L 18-29 vs Phi" },
                         { pos: "RB", name: "Isiah Pacheco", team: "KC", proj: 8.70, pts: 13.50, stats: "6 Rec, 41 Rec Yds, 34 Rush Yds", game: "L 9-26 @ Ten" },
                         { pos: "DEF", name: "Commanders", team: "Was", proj: 4.77, pts: 3.00, stats: "2 Sack, 1 Fum Rec, Pts Allow 28-34", game: "L 18-29 vs Phi" }
+                    ]
+                }
+            },
+            third: {
+                title: "Week 17 3rd Place Game - Dec 23-29",
+                team1: { name: "CMC", manager: "chris", record: "9-5-0 | 4th", score: 122.26, proj: 146.57, isWinner: false },
+                team2: { name: "Who Flung Puka", manager: "Matthew Brian", record: "11-2-1 | 3rd", score: 145.30, proj: 157.43, isWinner: true },
+                starters: {
+                    team1: [
+                        { pos: "QB", name: "Dak Prescott", team: "Dal", proj: 21.28, pts: 27.18, stats: "307 Pass Yds, 2 Pass TD, 24 Rush Yds", game: "W 30-23 @ Was" },
+                        { pos: "WR", name: "Terry McLaurin", team: "Was", proj: 15.70, pts: 11.30, stats: "63 Rec Yds, 5 Rec", game: "L 23-30 vs Dal" },
+                        { pos: "WR", name: "Chris Godwin Jr.", team: "TB", proj: 11.81, pts: 23.80, stats: "108 Rec Yds, 7 Rec, 1 Rec TD", game: "L 17-20 @ Mia" },
+                        { pos: "WR", name: "DJ Moore", team: "Chi", proj: 14.31, pts: 1.70, stats: "1 Rec, 7 Rec Yds", game: "L 38-42 @ SF" },
+                        { pos: "RB", name: "Josh Jacobs", team: "GB", proj: 14.64, pts: 1.30, stats: "1 Rec, 3 Rush Yds", game: "L 24-41 vs Bal" },
+                        { pos: "RB", name: "Jonathan Taylor", team: "Ind", proj: 19.96, pts: 17.40, stats: "70 Rush Yds, 1 Rush TD, 3 Rec", game: "L 17-23 vs Jax" },
+                        { pos: "TE", name: "Jake Ferguson", team: "Dal", proj: 10.09, pts: 7.60, stats: "1 Rec TD, 1 Rec, 6 Rec Yds", game: "W 30-23 @ Was" },
+                        { pos: "W/R/T", name: "Travis Etienne Jr.", team: "Jax", proj: 17.45, pts: 11.20, stats: "76 Rush Yds, 2 Rec, 16 Rec Yds", game: "W 23-17 @ Ind" },
+                        { pos: "Q/W", name: "Philip Rivers", team: "Ind", proj: 13.91, pts: 8.78, stats: "147 Pass Yds, 1 Pass TD, 1 Int", game: "L 17-23 vs Jax" },
+                        { pos: "DEF", name: "Saints", team: "NO", proj: 7.42, pts: 12.00, stats: "1 TD, 4 Sack, 1 Fum Rec", game: "W 34-26 @ Ten" }
+                    ],
+                    team2: [
+                        { pos: "QB", name: "Sam Darnold", team: "Sea", proj: 16.02, pts: 7.08, stats: "147 Pass Yds, 1 Pass TD, 1 Fum Lost", game: "W 27-10 @ Car" },
+                        { pos: "WR", name: "Mike Evans", team: "TB", proj: 14.15, pts: 12.10, stats: "1 Rec TD, 31 Rec Yds, 3 Rec", game: "L 17-20 @ Mia" },
+                        { pos: "WR", name: "George Pickens", team: "Dal", proj: 17.60, pts: 11.80, stats: "78 Rec Yds, 4 Rec", game: "W 30-23 @ Was" },
+                        { pos: "WR", name: "Tee Higgins", team: "Cin", proj: 15.65, pts: 9.90, stats: "59 Rec Yds, 4 Rec", game: "W 37-14 vs Ari" },
+                        { pos: "RB", name: "Jahmyr Gibbs", team: "Det", proj: 20.55, pts: 6.40, stats: "41 Rush Yds, 23 Rec Yds, 2 Rec", game: "L 10-23 @ Min" },
+                        { pos: "RB", name: "Christian McCaffrey", team: "SF", proj: 23.08, pts: 28.10, stats: "140 Rush Yds, 1 Rush TD, 41 Rec Yds", game: "W 42-38 vs Chi" },
+                        { pos: "TE", name: "Brenton Strange", team: "Jax", proj: 11.27, pts: 8.40, stats: "54 Rec Yds, 3 Rec", game: "W 23-17 @ Ind" },
+                        { pos: "W/R/T", name: "RJ Harvey", team: "Den", proj: 15.73, pts: 18.60, stats: "1 Rec TD, 5 Rec, 43 Rush Yds", game: "W 20-13 @ KC" },
+                        { pos: "Q/W", name: "Tyler Shough", team: "NO", proj: 16.12, pts: 24.92, stats: "333 Pass Yds, 2 Pass TD, 6 Rush Yds", game: "W 34-26 @ Ten" },
+                        { pos: "DEF", name: "Giants", team: "NYG", proj: 7.26, pts: 18.00, stats: "1 Ret TD, 4 Sack, 2 Int", game: "W 34-10 @ LV" }
+                    ]
+                },
+                bench: {
+                    team1: [
+                        { pos: "QB", name: "Lamar Jackson", team: "Bal", proj: 0.00, pts: 0.00, stats: "", game: "W 41-24 @ GB" },
+                        { pos: "WR", name: "Jayden Reed", team: "GB", proj: 9.55, pts: 8.10, stats: "41 Rec Yds, 4 Rec", game: "L 24-41 vs Bal" },
+                        { pos: "RB", name: "Emanuel Wilson", team: "GB", proj: 4.85, pts: 3.40, stats: "16 Rush Yds, 1 Rec, 8 Rec Yds", game: "L 24-41 vs Bal" },
+                        { pos: "RB", name: "Jacory Croskey-Merritt", team: "Was", proj: 12.08, pts: 24.50, stats: "2 Rush TD, 105 Rush Yds, 1 40 Yd Rush TD", game: "L 23-30 vs Dal" },
+                        { pos: "QB", name: "Shedeur Sanders", team: "Cle", proj: 13.40, pts: 11.44, stats: "186 Pass Yds, 1 Pass TD, 2 Int", game: "W 13-6 vs Pit" },
+                        { pos: "QB", name: "Tyler Huntley", team: "Bal", proj: 13.89, pts: 14.28, stats: "60 Rush Yds, 107 Pass Yds, 1 Pass TD", game: "W 41-24 @ GB" }
+                    ],
+                    team2: [
+                        { pos: "WR", name: "Jameson Williams", team: "Det", proj: 14.54, pts: 5.70, stats: "37 Rec Yds, 2 Rec", game: "L 10-23 @ Min" },
+                        { pos: "QB", name: "Aaron Rodgers", team: "Pit", proj: 12.52, pts: 7.32, stats: "168 Pass Yds, 6 Rush Yds", game: "L 6-13 @ Cle" },
+                        { pos: "WR", name: "Tetairoa McMillan", team: "Car", proj: 15.34, pts: 1.50, stats: "1 Rec, 5 Rec Yds", game: "L 10-27 vs Sea" },
+                        { pos: "WR", name: "Michael Pittman Jr.", team: "Ind", proj: 12.52, pts: 3.60, stats: "2 Rec, 16 Rec Yds", game: "L 17-23 vs Jax" },
+                        { pos: "DEF", name: "Chiefs", team: "KC", proj: 4.07, pts: 4.00, stats: "1 Int, 1 Sack, Pts Allow 14-20", game: "L 13-20 vs Den" },
+                        { pos: "DEF", name: "Rams", team: "LAR", proj: 6.19, pts: 8.00, stats: "1 TD, 1 Blk Kick", game: "L 24-27 @ Atl" }
                     ]
                 }
             },
