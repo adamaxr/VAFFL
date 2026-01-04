@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAFFL 2025 Playoffs</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -17,25 +13,10 @@
             color: #fff;
             padding: 20px;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .back-link {
-            display: inline-block;
-            color: #ffd700;
-            text-decoration: none;
-            margin-bottom: 20px;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        h1 {
-            text-align: center;
-            color: #ffd700;
-            margin-bottom: 10px;
-            font-size: 2.5rem;
-        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .back-link { display: inline-block; color: #ffd700; text-decoration: none; margin-bottom: 20px; }
+        .back-link:hover { text-decoration: underline; }
+        h1 { text-align: center; color: #ffd700; margin-bottom: 10px; font-size: 2.5rem; }
         .champion-banner {
             text-align: center;
             background: linear-gradient(135deg, #ffd700, #ffaa00);
@@ -45,36 +26,12 @@
             margin-bottom: 30px;
             font-size: 1.3rem;
         }
-        .champion-banner span {
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
+        .champion-banner span { font-weight: bold; font-size: 1.5rem; }
 
-        /* Bracket Layout */
-        .bracket {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            overflow-x: auto;
-            padding: 20px 0;
-        }
-        .round {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            min-width: 280px;
-        }
-        .round-title {
-            text-align: center;
-            color: #ffd700;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-            border-bottom: 2px solid #ffd700;
-        }
+        .bracket { display: flex; justify-content: space-between; align-items: center; gap: 20px; overflow-x: auto; padding: 20px 0; }
+        .round { display: flex; flex-direction: column; gap: 20px; min-width: 280px; }
+        .round-title { text-align: center; color: #ffd700; font-size: 1.1rem; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 2px solid #ffd700; }
 
-        /* Matchup Cards */
         .matchup {
             background: rgba(255,255,255,0.1);
             border-radius: 10px;
@@ -83,89 +40,36 @@
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
-        .matchup:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: #ffd700;
-            transform: scale(1.02);
-        }
-        .matchup.bye {
-            opacity: 0.6;
-            cursor: default;
-        }
-        .matchup.bye:hover {
-            transform: none;
-            border-color: transparent;
-        }
-        .team-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-        }
-        .team-row:first-child {
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-        .team-name {
-            font-weight: 500;
-        }
-        .team-score {
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        .winner .team-name {
-            color: #ffd700;
-        }
-        .winner .team-score {
-            color: #ffd700;
-        }
-        .click-hint {
-            text-align: center;
-            font-size: 0.75rem;
-            color: #888;
-            margin-top: 8px;
-        }
+        .matchup:hover { background: rgba(255,255,255,0.15); border-color: #ffd700; transform: scale(1.02); }
+        .matchup.bye { opacity: 0.6; cursor: default; }
+        .matchup.bye:hover { transform: none; border-color: transparent; }
+        .team-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; }
+        .team-row:first-child { border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .team-name { font-weight: 500; }
+        .team-score { font-weight: bold; font-size: 1.1rem; }
+        .winner .team-name, .winner .team-score { color: #ffd700; }
+        .click-hint { text-align: center; font-size: 0.75rem; color: #888; margin-top: 8px; }
+        .championship .matchup { background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,170,0,0.1)); border: 2px solid #ffd700; }
 
-        /* Championship styling */
-        .championship .matchup {
-            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,170,0,0.1));
-            border: 2px solid #ffd700;
-        }
-
-        /* Connector lines */
-        .round:not(:last-child) .matchup::after {
-            content: '';
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            width: 20px;
-            height: 2px;
-            background: #ffd700;
-        }
-
-        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
             z-index: 1000;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 20px;
+            overflow-y: auto;
         }
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
         .modal {
             background: #1a1a2e;
             border-radius: 15px;
-            max-width: 900px;
+            max-width: 1100px;
             width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
+            margin: 20px auto;
             border: 2px solid #ffd700;
         }
         .modal-header {
@@ -175,106 +79,66 @@
             padding: 20px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             background: rgba(255,215,0,0.1);
+            border-radius: 13px 13px 0 0;
         }
-        .modal-header h2 {
-            color: #ffd700;
-        }
-        .close-btn {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 2rem;
-            cursor: pointer;
-            line-height: 1;
-        }
-        .close-btn:hover {
-            color: #ffd700;
-        }
-        .modal-body {
-            padding: 20px;
-        }
+        .modal-header h2 { color: #ffd700; }
+        .close-btn { background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; }
+        .close-btn:hover { color: #ffd700; }
+        .modal-body { padding: 20px; }
 
-        /* Matchup Detail */
-        .matchup-header {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .team-detail {
-            text-align: center;
-        }
-        .team-detail.winner-detail {
-            color: #ffd700;
-        }
-        .team-detail h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        .team-detail .score {
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
-        .team-detail .record {
-            color: #888;
-            font-size: 0.9rem;
-        }
-        .vs-text {
-            font-size: 1.5rem;
-            color: #888;
-        }
+        .matchup-header { display: flex; justify-content: space-around; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 20px; }
+        .team-detail { text-align: center; }
+        .team-detail.winner-detail { color: #ffd700; }
+        .team-detail h3 { font-size: 1.5rem; margin-bottom: 5px; }
+        .team-detail .score { font-size: 2.5rem; font-weight: bold; }
+        .team-detail .proj { font-size: 0.9rem; color: #888; }
+        .team-detail .record { color: #888; font-size: 0.9rem; }
+        .vs-text { font-size: 1.5rem; color: #888; }
 
-        /* Player Table */
-        .players-section h4 {
-            color: #ffd700;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-        .players-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-        .players-table th {
+        .section-toggle {
             background: rgba(255,215,0,0.2);
+            border: none;
             color: #ffd700;
-            padding: 10px;
+            padding: 12px 20px;
+            width: 100%;
             text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .players-table td {
-            padding: 8px 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .players-table tr:hover {
-            background: rgba(255,255,255,0.05);
-        }
-        .pos-col {
-            text-align: center;
-            color: #888;
-        }
-        .pts-col {
-            font-weight: bold;
-            text-align: right;
-        }
-        .winner-pts {
-            color: #4ade80;
-        }
-        .loser-pts {
-            color: #f87171;
-        }
+        .section-toggle:hover { background: rgba(255,215,0,0.3); }
+        .section-toggle .arrow { transition: transform 0.3s; }
+        .section-toggle.open .arrow { transform: rotate(180deg); }
+        .section-content { display: none; margin-bottom: 20px; }
+        .section-content.open { display: block; }
 
-        /* Responsive */
+        .players-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .players-table th { background: rgba(255,215,0,0.2); color: #ffd700; padding: 10px 8px; text-align: left; position: sticky; top: 0; }
+        .players-table td { padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .players-table tr:hover { background: rgba(255,255,255,0.05); }
+        .pos-col { text-align: center; font-weight: bold; color: #888; width: 50px; }
+        .pts-col { font-weight: bold; text-align: right; }
+        .proj-col { color: #888; text-align: right; font-size: 0.8rem; }
+        .stats-col { font-size: 0.75rem; color: #aaa; }
+        .game-col { font-size: 0.75rem; color: #888; }
+        .winner-row { background: rgba(74, 222, 128, 0.1); }
+        .winner-pts { color: #4ade80; }
+        .loser-pts { color: #f87171; }
+        .bench-table { opacity: 0.8; }
+        .bench-label { background: rgba(100,100,100,0.3); color: #888; font-style: italic; }
+
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .team-column h4 { color: #ffd700; margin-bottom: 10px; padding: 10px; background: rgba(255,215,0,0.1); border-radius: 8px; text-align: center; }
+
         @media (max-width: 900px) {
-            .bracket {
-                flex-direction: column;
-            }
-            .matchup-header {
-                flex-direction: column;
-            }
+            .bracket { flex-direction: column; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .players-table { font-size: 0.75rem; }
+            .stats-col, .game-col { display: none; }
         }
     </style>
 </head>
@@ -282,270 +146,310 @@
     <div class="container">
         <a href="index.html" class="back-link">&larr; Back to Home</a>
         <h1>2025 Playoffs</h1>
-        <div class="champion-banner">
-            🏆 Champion: <span>CCR</span> 🏆
-        </div>
+        <div class="champion-banner">🏆 Champion: <span>CCR</span> 🏆</div>
 
         <div class="bracket">
-            <!-- Round 1 - Quarterfinals -->
             <div class="round">
                 <div class="round-title">Week 15 - Quarterfinals</div>
                 <div class="matchup" onclick="showMatchup('qf1')">
-                    <div class="team-row winner">
-                        <span class="team-name">CCR</span>
-                        <span class="team-score">176.78</span>
-                    </div>
-                    <div class="team-row">
-                        <span class="team-name">Rockets</span>
-                        <span class="team-score">127.02</span>
-                    </div>
+                    <div class="team-row winner"><span class="team-name">CCR</span><span class="team-score">176.78</span></div>
+                    <div class="team-row"><span class="team-name">Rockets</span><span class="team-score">127.02</span></div>
                     <div class="click-hint">Click for details</div>
                 </div>
                 <div class="matchup" onclick="showMatchup('qf2')">
-                    <div class="team-row">
-                        <span class="team-name">Gamehendge Comets</span>
-                        <span class="team-score">154.06</span>
-                    </div>
-                    <div class="team-row winner">
-                        <span class="team-name">CMC</span>
-                        <span class="team-score">178.16</span>
-                    </div>
+                    <div class="team-row"><span class="team-name">Gamehendge Comets</span><span class="team-score">154.06</span></div>
+                    <div class="team-row winner"><span class="team-name">CMC</span><span class="team-score">178.16</span></div>
                     <div class="click-hint">Click for details</div>
                 </div>
                 <div class="matchup bye">
-                    <div class="team-row winner">
-                        <span class="team-name">Saquon deez nutz</span>
-                        <span class="team-score">135.62</span>
-                    </div>
-                    <div class="team-row">
-                        <span class="team-name">BYE</span>
-                        <span class="team-score">-</span>
-                    </div>
+                    <div class="team-row winner"><span class="team-name">Saquon deez nutz</span><span class="team-score">135.62</span></div>
+                    <div class="team-row"><span class="team-name">BYE</span><span class="team-score">-</span></div>
                 </div>
                 <div class="matchup bye">
-                    <div class="team-row winner">
-                        <span class="team-name">Who Flung Puka</span>
-                        <span class="team-score">109.20</span>
-                    </div>
-                    <div class="team-row">
-                        <span class="team-name">BYE</span>
-                        <span class="team-score">-</span>
-                    </div>
+                    <div class="team-row winner"><span class="team-name">Who Flung Puka</span><span class="team-score">109.20</span></div>
+                    <div class="team-row"><span class="team-name">BYE</span><span class="team-score">-</span></div>
                 </div>
             </div>
 
-            <!-- Round 2 - Semifinals -->
             <div class="round">
                 <div class="round-title">Week 16 - Semifinals</div>
                 <div class="matchup" onclick="showMatchup('sf1')">
-                    <div class="team-row winner">
-                        <span class="team-name">CCR</span>
-                        <span class="team-score">186.08</span>
-                    </div>
-                    <div class="team-row">
-                        <span class="team-name">Who Flung Puka</span>
-                        <span class="team-score">175.86</span>
-                    </div>
+                    <div class="team-row winner"><span class="team-name">CCR</span><span class="team-score">186.08</span></div>
+                    <div class="team-row"><span class="team-name">Who Flung Puka</span><span class="team-score">175.86</span></div>
                     <div class="click-hint">Click for details</div>
                 </div>
                 <div class="matchup" onclick="showMatchup('sf2')">
-                    <div class="team-row winner">
-                        <span class="team-name">Saquon deez nutz</span>
-                        <span class="team-score">159.20</span>
-                    </div>
-                    <div class="team-row">
-                        <span class="team-name">CMC</span>
-                        <span class="team-score">123.00</span>
-                    </div>
+                    <div class="team-row winner"><span class="team-name">Saquon deez nutz</span><span class="team-score">159.20</span></div>
+                    <div class="team-row"><span class="team-name">CMC</span><span class="team-score">123.00</span></div>
                     <div class="click-hint">Click for details</div>
                 </div>
             </div>
 
-            <!-- Championship -->
             <div class="round championship">
                 <div class="round-title">Week 17 - Championship</div>
                 <div class="matchup" onclick="showMatchup('final')">
-                    <div class="team-row winner">
-                        <span class="team-name">CCR 🏆</span>
-                        <span class="team-score">187.50</span>
-                    </div>
-                    <div class="team-row">
-                        <span class="team-name">Saquon deez nutz</span>
-                        <span class="team-score">117.52</span>
-                    </div>
+                    <div class="team-row winner"><span class="team-name">CCR 🏆</span><span class="team-score">187.50</span></div>
+                    <div class="team-row"><span class="team-name">Saquon deez nutz</span><span class="team-score">117.52</span></div>
                     <div class="click-hint">Click for details</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
     <div class="modal-overlay" id="modal" onclick="closeModal(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <h2 id="modal-title">Matchup Details</h2>
                 <button class="close-btn" onclick="closeModal()">&times;</button>
             </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Content loaded dynamically -->
-            </div>
+            <div class="modal-body" id="modal-body"></div>
         </div>
     </div>
 
     <script>
         const matchupData = {
             qf1: {
-                title: "Week 15 - Quarterfinal",
-                team1: { name: "CCR", manager: "AdamR", record: "8-6-0 | 1st", score: 176.78, isWinner: true },
-                team2: { name: "Rockets", manager: "Michael", record: "7-7-0 | 5th", score: 127.02, isWinner: false },
-                players: {
+                title: "Week 15 Quarterfinal - Dec 9-15",
+                team1: { name: "CCR", manager: "AdamR", record: "8-6-0 | 1st", score: 176.78, proj: 161.30, isWinner: true },
+                team2: { name: "Rockets", manager: "Michael", record: "7-7-0 | 5th", score: 127.02, proj: 144.24, isWinner: false },
+                starters: {
                     team1: [
-                        { pos: "QB", name: "Brock Purdy", pts: 26.20 },
-                        { pos: "WR", name: "Zay Flowers", pts: 15.80 },
-                        { pos: "WR", name: "Jaxon Smith-Njigba", pts: 18.30 },
-                        { pos: "WR", name: "Deebo Samuel", pts: 7.30 },
-                        { pos: "RB", name: "Derrick Henry", pts: 10.00 },
-                        { pos: "RB", name: "Saquon Barkley", pts: 17.20 },
-                        { pos: "TE", name: "George Kittle", pts: 22.80 },
-                        { pos: "W/R/T", name: "Davante Adams", pts: 11.10 },
-                        { pos: "Q/W", name: "Bo Nix", pts: 32.08 },
-                        { pos: "DEF", name: "Eagles", pts: 16.00 }
+                        { pos: "QB", name: "Brock Purdy", team: "SF", proj: 19.08, pts: 26.20, stats: "3 Pass TD, 295 Pass Yds, 44 Rush Yds", game: "W 37-24 vs Ten" },
+                        { pos: "WR", name: "Zay Flowers", team: "Bal", proj: 16.11, pts: 15.80, stats: "68 Rec Yds, 1 Rec TD, 3 Rec", game: "W 24-0 @ Cin" },
+                        { pos: "WR", name: "Jaxon Smith-Njigba", team: "Sea", proj: 21.61, pts: 18.30, stats: "113 Rec Yds, 7 Rec", game: "W 18-16 vs Ind" },
+                        { pos: "WR", name: "Deebo Samuel", team: "Was", proj: 14.16, pts: 7.30, stats: "43 Rec Yds, 3 Rec", game: "W 29-21 @ NYG" },
+                        { pos: "RB", name: "Derrick Henry", team: "Bal", proj: 17.11, pts: 10.00, stats: "100 Rush Yds", game: "W 24-0 @ Cin" },
+                        { pos: "RB", name: "Saquon Barkley", team: "Phi", proj: 16.87, pts: 17.20, stats: "78 Rush Yds, 1 Rush TD, 2 Rec", game: "W 31-0 vs LV" },
+                        { pos: "TE", name: "George Kittle", team: "SF", proj: 13.25, pts: 22.80, stats: "88 Rec Yds, 8 Rec, 1 Rec TD", game: "W 37-24 vs Ten" },
+                        { pos: "W/R/T", name: "Davante Adams", team: "LAR", proj: 16.86, pts: 11.10, stats: "71 Rec Yds, 4 Rec", game: "W 41-34 vs Det" },
+                        { pos: "Q/W", name: "Bo Nix", team: "Den", proj: 16.86, pts: 32.08, stats: "4 Pass TD, 302 Pass Yds, 10 Rush Yds", game: "W 34-26 vs GB" },
+                        { pos: "DEF", name: "Eagles", team: "Phi", proj: 9.39, pts: 16.00, stats: "Pts Allow 0, 4 Sack, 1 Int", game: "W 31-0 vs LV" }
                     ],
                     team2: [
-                        { pos: "QB", name: "Drake Maye", pts: 21.50 },
-                        { pos: "WR", name: "CeeDee Lamb", pts: 17.10 },
-                        { pos: "WR", name: "Courtland Sutton", pts: 24.30 },
-                        { pos: "WR", name: "Wan'Dale Robinson", pts: 16.40 },
-                        { pos: "RB", name: "Jaylen Warren", pts: 7.80 },
-                        { pos: "RB", name: "Omarion Hampton", pts: 7.50 },
-                        { pos: "TE", name: "Brock Bowers", pts: 8.80 },
-                        { pos: "W/R/T", name: "Ashton Jeanty", pts: 8.20 },
-                        { pos: "Q/W", name: "Bryce Young", pts: 15.42 },
-                        { pos: "DEF", name: "49ers", pts: 0.00 }
+                        { pos: "QB", name: "Drake Maye", team: "NE", proj: 18.44, pts: 21.50, stats: "2 Rush TD, 155 Pass Yds, 43 Rush Yds", game: "L 31-35 vs Buf" },
+                        { pos: "WR", name: "CeeDee Lamb", team: "Dal", proj: 21.99, pts: 17.10, stats: "111 Rec Yds, 6 Rec", game: "L 26-34 vs Min" },
+                        { pos: "WR", name: "Courtland Sutton", team: "Den", proj: 13.69, pts: 24.30, stats: "113 Rec Yds, 7 Rec, 1 Rec TD", game: "W 34-26 vs GB" },
+                        { pos: "WR", name: "Wan'Dale Robinson", team: "NYG", proj: 12.69, pts: 16.40, stats: "1 Rec TD, 54 Rec Yds, 5 Rec", game: "L 21-29 vs Was" },
+                        { pos: "RB", name: "Jaylen Warren", team: "Pit", proj: 12.79, pts: 7.80, stats: "33 Rush Yds, 3 Rec, 15 Rec Yds", game: "W 28-15 vs Mia" },
+                        { pos: "RB", name: "Omarion Hampton", team: "LAC", proj: 12.77, pts: 7.50, stats: "61 Rush Yds, 1 Rec, 4 Rec Yds", game: "W 16-13 @ KC" },
+                        { pos: "TE", name: "Brock Bowers", team: "LV", proj: 14.95, pts: 8.80, stats: "6 Rec, 28 Rec Yds", game: "L 0-31 @ Phi" },
+                        { pos: "W/R/T", name: "Ashton Jeanty", team: "LV", proj: 15.67, pts: 8.20, stats: "4 Rec, 35 Rush Yds, 7 Rec Yds", game: "L 0-31 @ Phi" },
+                        { pos: "Q/W", name: "Bryce Young", team: "Car", proj: 14.50, pts: 15.42, stats: "163 Pass Yds, 49 Rush Yds, 1 Pass TD", game: "L 17-20 @ NO" },
+                        { pos: "DEF", name: "49ers", team: "SF", proj: 6.75, pts: 0.00, stats: "", game: "W 37-24 vs Ten" }
+                    ]
+                },
+                bench: {
+                    team1: [
+                        { pos: "TE", name: "Zach Ertz", team: "Was", proj: 0.00, pts: 0.00, stats: "IR", game: "W 29-21 @ NYG" },
+                        { pos: "WR", name: "Romeo Doubs", team: "GB", proj: 10.66, pts: 5.60, stats: "36 Rec Yds, 2 Rec", game: "L 26-34 @ Den" },
+                        { pos: "RB", name: "David Montgomery", team: "Det", proj: 8.88, pts: 9.20, stats: "1 Rush TD, 32 Rush Yds", game: "L 34-41 @ LAR" },
+                        { pos: "RB", name: "Rhamondre Stevenson", team: "NE", proj: 8.78, pts: 10.70, stats: "50 Rush Yds, 3 Rec, 27 Rec Yds", game: "L 31-35 vs Buf" },
+                        { pos: "QB", name: "J.J. McCarthy", team: "Min", proj: 15.97, pts: 24.50, stats: "250 Pass Yds, 2 Pass TD, 1 Rush TD", game: "W 34-26 @ Dal" },
+                        { pos: "DEF", name: "Browns", team: "Cle", proj: 5.80, pts: 2.00, stats: "3 Sack, Pts Allow 28-34", game: "L 3-31 @ Chi" }
+                    ],
+                    team2: [
+                        { pos: "QB", name: "Caleb Williams", team: "Chi", proj: 15.31, pts: 18.98, stats: "242 Pass Yds, 2 Pass TD, 13 Rush Yds", game: "W 31-3 vs Cle" },
+                        { pos: "QB", name: "Cam Ward", team: "Ten", proj: 13.11, pts: 15.00, stats: "2 Pass TD, 170 Pass Yds, 2 Rush Yds", game: "L 24-37 @ SF" },
+                        { pos: "WR", name: "Rome Odunze", team: "Chi", proj: 6.85, pts: 0.00, stats: "", game: "W 31-3 vs Cle" },
+                        { pos: "RB", name: "Bhayshul Tuten", team: "Jax", proj: 6.73, pts: 9.30, stats: "1 Rec TD, 16 Rec Yds, 1 Rec", game: "W 48-20 vs NYJ" },
+                        { pos: "WR", name: "Garrett Wilson", team: "NYJ", proj: 0.00, pts: 0.00, stats: "IR", game: "L 20-48 @ Jax" },
+                        { pos: "DEF", name: "Steelers", team: "Pit", proj: 6.81, pts: 7.00, stats: "4 Sack, 1 Int, Pts Allow 14-20", game: "W 28-15 vs Mia" }
                     ]
                 }
             },
             qf2: {
-                title: "Week 15 - Quarterfinal",
-                team1: { name: "Gamehendge Comets", manager: "Steve Z", record: "7-7-0 | 6th", score: 154.06, isWinner: false },
-                team2: { name: "CMC", manager: "chris", record: "9-5-0 | 4th", score: 178.16, isWinner: true },
-                players: {
+                title: "Week 15 Quarterfinal - Dec 9-15",
+                team1: { name: "Gamehendge Comets", manager: "Steve Z", record: "7-7-0 | 6th", score: 154.06, proj: 150.43, isWinner: false },
+                team2: { name: "CMC", manager: "chris", record: "9-5-0 | 4th", score: 178.16, proj: 144.04, isWinner: true },
+                starters: {
                     team1: [
-                        { pos: "QB", name: "C.J. Stroud", pts: 24.90 },
-                        { pos: "WR", name: "DeVonta Smith", pts: 7.00 },
-                        { pos: "WR", name: "Nico Collins", pts: 25.50 },
-                        { pos: "WR", name: "Jaylen Waddle", pts: 4.60 },
-                        { pos: "RB", name: "Bijan Robinson", pts: 29.50 },
-                        { pos: "RB", name: "Bucky Irving", pts: 8.10 },
-                        { pos: "TE", name: "Harold Fannin Jr.", pts: 12.00 },
-                        { pos: "W/R/T", name: "Kenneth Walker III", pts: 2.90 },
-                        { pos: "Q/W", name: "Jacoby Brissett", pts: 21.56 },
-                        { pos: "DEF", name: "Bears", pts: 18.00 }
+                        { pos: "QB", name: "C.J. Stroud", team: "Hou", proj: 17.87, pts: 24.90, stats: "3 Pass TD, 260 Pass Yds, 1 40 Yd Pass TD", game: "W 40-20 vs Ari" },
+                        { pos: "WR", name: "DeVonta Smith", team: "Phi", proj: 14.61, pts: 7.00, stats: "50 Rec Yds, 2 Rec", game: "W 31-0 vs LV" },
+                        { pos: "WR", name: "Nico Collins", team: "Hou", proj: 17.15, pts: 25.50, stats: "2 Rec TD, 85 Rec Yds, 3 Rec", game: "W 40-20 vs Ari" },
+                        { pos: "WR", name: "Jaylen Waddle", team: "Mia", proj: 15.01, pts: 4.60, stats: "26 Rec Yds, 2 Rec", game: "L 15-28 @ Pit" },
+                        { pos: "RB", name: "Bijan Robinson", team: "Atl", proj: 20.04, pts: 29.50, stats: "93 Rush Yds, 82 Rec Yds, 8 Rec", game: "W 29-28 @ TB" },
+                        { pos: "RB", name: "Bucky Irving", team: "TB", proj: 16.68, pts: 8.10, stats: "60 Rush Yds, 11 Rec Yds, 1 Rec", game: "L 28-29 vs Atl" },
+                        { pos: "TE", name: "Harold Fannin Jr.", team: "Cle", proj: 11.37, pts: 12.00, stats: "7 Rec, 48 Rec Yds, 2 Rush Yds", game: "L 3-31 @ Chi" },
+                        { pos: "W/R/T", name: "Kenneth Walker III", team: "Sea", proj: 14.44, pts: 2.90, stats: "17 Rush Yds, 1 Rec, 2 Rec Yds", game: "W 18-16 vs Ind" },
+                        { pos: "Q/W", name: "Jacoby Brissett", team: "Ari", proj: 15.83, pts: 21.56, stats: "3 Pass TD, 249 Pass Yds, 1 Int", game: "L 20-40 @ Hou" },
+                        { pos: "DEF", name: "Bears", team: "Chi", proj: 7.43, pts: 18.00, stats: "Pts Allow 1-6, 3 Int, 5 Sack", game: "W 31-3 vs Cle" }
                     ],
                     team2: [
-                        { pos: "QB", name: "Lamar Jackson", pts: 15.60 },
-                        { pos: "WR", name: "Terry McLaurin", pts: 17.90 },
-                        { pos: "WR", name: "DJ Moore", pts: 22.90 },
-                        { pos: "WR", name: "Chris Godwin Jr.", pts: 14.00 },
-                        { pos: "RB", name: "Jonathan Taylor", pts: 13.10 },
-                        { pos: "RB", name: "Travis Etienne Jr.", pts: 33.50 },
-                        { pos: "TE", name: "Travis Kelce", pts: 14.00 },
-                        { pos: "W/R/T", name: "Josh Jacobs", pts: 25.20 },
-                        { pos: "Q/W", name: "Dak Prescott", pts: 11.96 },
-                        { pos: "DEF", name: "Jaguars", pts: 10.00 }
+                        { pos: "QB", name: "Lamar Jackson", team: "Bal", proj: 20.59, pts: 15.60, stats: "2 Pass TD, 150 Pass Yds, 26 Rush Yds", game: "W 24-0 @ Cin" },
+                        { pos: "WR", name: "Terry McLaurin", team: "Was", proj: 12.68, pts: 17.90, stats: "69 Rec Yds, 1 Rec TD, 3 Rec", game: "W 29-21 @ NYG" },
+                        { pos: "WR", name: "DJ Moore", team: "Chi", proj: 10.40, pts: 22.90, stats: "2 Rec TD, 69 Rec Yds, 4 Rec", game: "W 31-3 vs Cle" },
+                        { pos: "WR", name: "Chris Godwin Jr.", team: "TB", proj: 11.61, pts: 14.00, stats: "1 Rec TD, 4 Rec, 20 Rec Yds", game: "L 28-29 vs Atl" },
+                        { pos: "RB", name: "Jonathan Taylor", team: "Ind", proj: 17.60, pts: 13.10, stats: "87 Rush Yds, 3 Rec, 14 Rec Yds", game: "L 16-18 @ Sea" },
+                        { pos: "RB", name: "Travis Etienne Jr.", team: "Jax", proj: 14.89, pts: 33.50, stats: "3 Rec TD, 73 Rec Yds, 32 Rush Yds", game: "W 48-20 vs NYJ" },
+                        { pos: "TE", name: "Travis Kelce", team: "KC", proj: 9.91, pts: 14.00, stats: "7 Rec, 70 Rec Yds", game: "L 13-16 vs LAC" },
+                        { pos: "W/R/T", name: "Josh Jacobs", team: "GB", proj: 17.60, pts: 25.20, stats: "73 Rush Yds, 1 Rush TD, 1 Rec TD", game: "L 26-34 @ Den" },
+                        { pos: "Q/W", name: "Dak Prescott", team: "Dal", proj: 20.39, pts: 11.96, stats: "294 Pass Yds, 2 Rush Yds", game: "L 26-34 vs Min" },
+                        { pos: "DEF", name: "Jaguars", team: "Jax", proj: 8.37, pts: 10.00, stats: "3 Int, 3 Sack, Pts Allow 14-20", game: "W 48-20 vs NYJ" }
+                    ]
+                },
+                bench: {
+                    team1: [
+                        { pos: "WR", name: "Jakobi Meyers", team: "Jax", proj: 9.33, pts: 12.10, stats: "71 Rec Yds, 5 Rec", game: "W 48-20 vs NYJ" },
+                        { pos: "TE", name: "Hunter Henry", team: "NE", proj: 8.91, pts: 2.80, stats: "18 Rec Yds, 1 Rec", game: "L 31-35 vs Buf" },
+                        { pos: "WR", name: "Khalil Shakir", team: "Buf", proj: 11.20, pts: 11.50, stats: "65 Rec Yds, 5 Rec", game: "W 35-31 @ NE" },
+                        { pos: "QB", name: "Kirk Cousins", team: "Atl", proj: 13.22, pts: 29.92, stats: "373 Pass Yds, 3 Pass TD", game: "W 29-28 @ TB" },
+                        { pos: "RB", name: "Aaron Jones Sr.", team: "Min", proj: 11.46, pts: 9.50, stats: "34 Rush Yds, 31 Rec Yds, 3 Rec", game: "W 34-26 @ Dal" },
+                        { pos: "DEF", name: "Browns", team: "Cle", proj: 5.80, pts: 2.00, stats: "3 Sack, Pts Allow 28-34", game: "L 3-31 @ Chi" }
+                    ],
+                    team2: [
+                        { pos: "WR", name: "Alec Pierce", team: "Ind", proj: 9.55, pts: 2.60, stats: "16 Rec Yds, 1 Rec", game: "L 16-18 @ Sea" },
+                        { pos: "RB", name: "Emanuel Wilson", team: "GB", proj: 4.28, pts: 0.30, stats: "3 Rush Yds", game: "L 26-34 @ Den" },
+                        { pos: "TE", name: "Jake Ferguson", team: "Dal", proj: 10.83, pts: 3.60, stats: "2 Rec, 16 Rec Yds", game: "L 26-34 vs Min" },
+                        { pos: "RB", name: "Jacory Croskey-Merritt", team: "Was", proj: 10.53, pts: 15.60, stats: "96 Rush Yds, 1 Rush TD", game: "W 29-21 @ NYG" },
+                        { pos: "RB", name: "Isiah Pacheco", team: "KC", proj: 8.35, pts: 2.10, stats: "21 Rush Yds", game: "L 13-16 vs LAC" },
+                        { pos: "DEF", name: "Commanders", team: "Was", proj: 5.41, pts: 9.00, stats: "1 Ret TD, 1 Int, 1 Sack", game: "W 29-21 @ NYG" }
                     ]
                 }
             },
             sf1: {
-                title: "Week 16 - Semifinal",
-                team1: { name: "CCR", manager: "AdamR", record: "8-6-0 | 1st", score: 186.08, isWinner: true },
-                team2: { name: "Who Flung Puka", manager: "Matthew Brian", record: "11-2-1 | 3rd", score: 175.86, isWinner: false },
-                players: {
+                title: "Week 16 Semifinal - Dec 16-22",
+                team1: { name: "CCR", manager: "AdamR", record: "8-6-0 | 1st", score: 186.08, proj: 155.11, isWinner: true },
+                team2: { name: "Who Flung Puka", manager: "Matthew Brian", record: "11-2-1 | 3rd", score: 175.86, proj: 156.81, isWinner: false },
+                starters: {
                     team1: [
-                        { pos: "QB", name: "Brock Purdy", pts: 31.90 },
-                        { pos: "WR", name: "Zay Flowers", pts: 21.20 },
-                        { pos: "WR", name: "Jaxon Smith-Njigba", pts: 23.60 },
-                        { pos: "WR", name: "Deebo Samuel", pts: 6.50 },
-                        { pos: "RB", name: "Derrick Henry", pts: 22.80 },
-                        { pos: "RB", name: "Saquon Barkley", pts: 21.20 },
-                        { pos: "TE", name: "George Kittle", pts: 24.50 },
-                        { pos: "W/R/T", name: "Tony Pollard", pts: 10.20 },
-                        { pos: "Q/W", name: "Bo Nix", pts: 19.18 },
-                        { pos: "DEF", name: "Eagles", pts: 5.00 }
+                        { pos: "QB", name: "Brock Purdy", team: "SF", proj: 18.13, pts: 31.90, stats: "5 Pass TD, 295 Pass Yds, 11 Rush Yds", game: "W 48-27 @ Ind" },
+                        { pos: "WR", name: "Zay Flowers", team: "Bal", proj: 15.64, pts: 21.20, stats: "84 Rec Yds, 7 Rec, 1 Rush TD", game: "L 24-28 vs NE" },
+                        { pos: "WR", name: "Jaxon Smith-Njigba", team: "Sea", proj: 22.51, pts: 23.60, stats: "96 Rec Yds, 8 Rec, 1 Rec TD", game: "W 38-37 vs LAR" },
+                        { pos: "WR", name: "Deebo Samuel", team: "Was", proj: 13.67, pts: 6.50, stats: "35 Rec Yds, 3 Rec", game: "L 18-29 vs Phi" },
+                        { pos: "RB", name: "Derrick Henry", team: "Bal", proj: 15.61, pts: 22.80, stats: "128 Rush Yds, 2 Rush TD, 1 Fum Lost", game: "L 24-28 vs NE" },
+                        { pos: "RB", name: "Saquon Barkley", team: "Phi", proj: 17.34, pts: 21.20, stats: "132 Rush Yds, 1 Rush TD, 1 2-PT", game: "W 29-18 @ Was" },
+                        { pos: "TE", name: "George Kittle", team: "SF", proj: 14.61, pts: 24.50, stats: "115 Rec Yds, 7 Rec, 1 Rec TD", game: "W 48-27 @ Ind" },
+                        { pos: "W/R/T", name: "Tony Pollard", team: "Ten", proj: 11.76, pts: 10.20, stats: "102 Rush Yds", game: "W 26-9 vs KC" },
+                        { pos: "Q/W", name: "Bo Nix", team: "Den", proj: 18.24, pts: 19.18, stats: "352 Pass Yds, 1 Pass TD, 1 Fum Lost", game: "L 20-34 vs Jax" },
+                        { pos: "DEF", name: "Eagles", team: "Phi", proj: 7.60, pts: 5.00, stats: "2 Sack, 1 Int, Pts Allow 14-20", game: "W 29-18 @ Was" }
                     ],
                     team2: [
-                        { pos: "QB", name: "Aaron Rodgers", pts: 17.04 },
-                        { pos: "WR", name: "Jameson Williams", pts: 12.00 },
-                        { pos: "WR", name: "Mike Evans", pts: 14.10 },
-                        { pos: "WR", name: "George Pickens", pts: 26.00 },
-                        { pos: "RB", name: "Jahmyr Gibbs", pts: 22.80 },
-                        { pos: "RB", name: "Christian McCaffrey", pts: 32.60 },
-                        { pos: "TE", name: "Brenton Strange", pts: 14.90 },
-                        { pos: "W/R/T", name: "Tee Higgins", pts: 14.30 },
-                        { pos: "Q/W", name: "Tyler Shough", pts: 20.12 },
-                        { pos: "DEF", name: "Chiefs", pts: 2.00 }
+                        { pos: "QB", name: "Aaron Rodgers", team: "Pit", proj: 16.90, pts: 17.04, stats: "266 Pass Yds, 1 Pass TD, 1 40 Yd Pass TD", game: "W 29-24 @ Det" },
+                        { pos: "WR", name: "Jameson Williams", team: "Det", proj: 16.46, pts: 12.00, stats: "70 Rec Yds, 5 Rec", game: "L 24-29 vs Pit" },
+                        { pos: "WR", name: "Mike Evans", team: "TB", proj: 13.60, pts: 14.10, stats: "1 Rec TD, 5 Rec, 31 Rec Yds", game: "L 20-23 @ Car" },
+                        { pos: "WR", name: "George Pickens", team: "Dal", proj: 16.98, pts: 26.00, stats: "130 Rec Yds, 7 Rec, 1 Rec TD", game: "L 17-34 vs LAC" },
+                        { pos: "RB", name: "Jahmyr Gibbs", team: "Det", proj: 22.90, pts: 22.80, stats: "10 Rec, 66 Rec Yds, 1 Rec TD", game: "L 24-29 vs Pit" },
+                        { pos: "RB", name: "Christian McCaffrey", team: "SF", proj: 21.03, pts: 32.60, stats: "2 Rec TD, 117 Rush Yds, 6 Rec", game: "W 48-27 @ Ind" },
+                        { pos: "TE", name: "Brenton Strange", team: "Jax", proj: 10.17, pts: 14.90, stats: "1 Rec TD, 5 Rec, 39 Rec Yds", game: "W 34-20 @ Den" },
+                        { pos: "W/R/T", name: "Tee Higgins", team: "Cin", proj: 14.94, pts: 14.30, stats: "1 Rec TD, 53 Rec Yds, 3 Rec", game: "W 45-21 @ Mia" },
+                        { pos: "Q/W", name: "Tyler Shough", team: "NO", proj: 16.66, pts: 20.12, stats: "308 Pass Yds, 1 Pass TD, 8 Rush Yds", game: "W 29-6 vs NYJ" },
+                        { pos: "DEF", name: "Chiefs", team: "KC", proj: 7.17, pts: 2.00, stats: "2 Sack", game: "L 9-26 @ Ten" }
+                    ]
+                },
+                bench: {
+                    team1: [
+                        { pos: "WR", name: "Davante Adams", team: "LAR", proj: 0.00, pts: 0.00, stats: "", game: "L 37-38 @ Sea" },
+                        { pos: "WR", name: "Romeo Doubs", team: "GB", proj: 8.84, pts: 19.40, stats: "84 Rec Yds, 1 Rec TD, 5 Rec", game: "L 16-22 @ Chi" },
+                        { pos: "RB", name: "David Montgomery", team: "Det", proj: 9.33, pts: 1.40, stats: "14 Rush Yds", game: "L 24-29 vs Pit" },
+                        { pos: "RB", name: "Rhamondre Stevenson", team: "NE", proj: 8.84, pts: 17.80, stats: "1 Rush TD, 51 Rush Yds, 27 Rec Yds", game: "W 28-24 @ Bal" },
+                        { pos: "QB", name: "J.J. McCarthy", team: "Min", proj: 15.67, pts: 9.32, stats: "1 Rush TD, 108 Pass Yds, 20 Rush Yds", game: "W 16-13 @ NYG" },
+                        { pos: "TE", name: "Darren Waller", team: "Mia", proj: 9.99, pts: 7.00, stats: "40 Rec Yds, 3 Rec", game: "L 21-45 vs Cin" }
+                    ],
+                    team2: [
+                        { pos: "WR", name: "Tetairoa McMillan", team: "Car", proj: 15.68, pts: 19.30, stats: "73 Rec Yds, 6 Rec, 1 Rec TD", game: "W 23-20 vs TB" },
+                        { pos: "RB", name: "RJ Harvey", team: "Den", proj: 15.80, pts: 22.10, stats: "71 Rec Yds, 1 Rush TD, 50 Rush Yds", game: "L 20-34 vs Jax" },
+                        { pos: "QB", name: "Sam Darnold", team: "Sea", proj: 15.43, pts: 21.50, stats: "270 Pass Yds, 2 Pass TD, 2 2-PT", game: "W 38-37 vs LAR" },
+                        { pos: "RB", name: "Quinshon Judkins", team: "Cle", proj: 0.00, pts: 10.10, stats: "5 Rec, 29 Rec Yds, 22 Rush Yds", game: "L 20-23 vs Buf" },
+                        { pos: "WR", name: "Michael Pittman Jr.", team: "Ind", proj: 11.05, pts: 7.20, stats: "4 Rec, 32 Rec Yds", game: "L 27-48 vs SF" },
+                        { pos: "TE", name: "Dalton Kincaid", team: "Buf", proj: 7.80, pts: 0.00, stats: "", game: "W 23-20 @ Cle" }
                     ]
                 }
             },
             sf2: {
-                title: "Week 16 - Semifinal",
-                team1: { name: "Saquon deez nutz", manager: "Jason", record: "9-5-0 | 2nd", score: 159.20, isWinner: true },
-                team2: { name: "CMC", manager: "chris", record: "9-5-0 | 4th", score: 123.00, isWinner: false },
-                players: {
+                title: "Week 16 Semifinal - Dec 16-22",
+                team1: { name: "Saquon deez nutz", manager: "Jason", record: "9-5-0 | 2nd", score: 159.20, proj: 138.52, isWinner: true },
+                team2: { name: "CMC", manager: "chris", record: "9-5-0 | 4th", score: 123.00, proj: 150.97, isWinner: false },
+                starters: {
                     team1: [
-                        { pos: "QB", name: "Josh Allen", pts: 6.90 },
-                        { pos: "WR", name: "DK Metcalf", pts: 8.20 },
-                        { pos: "WR", name: "Ladd McConkey", pts: 14.30 },
-                        { pos: "WR", name: "Jordan Addison", pts: 4.60 },
-                        { pos: "RB", name: "Breece Hall", pts: 8.30 },
-                        { pos: "RB", name: "De'Von Achane", pts: 20.00 },
-                        { pos: "TE", name: "T.J. Hockenson", pts: 1.20 },
-                        { pos: "W/R/T", name: "Puka Nacua", pts: 54.50 },
-                        { pos: "Q/W", name: "Justin Herbert", pts: 33.20 },
-                        { pos: "DEF", name: "Bills", pts: 8.00 }
+                        { pos: "QB", name: "Josh Allen", team: "Buf", proj: 19.81, pts: 6.90, stats: "130 Pass Yds, 17 Rush Yds", game: "W 23-20 @ Cle" },
+                        { pos: "WR", name: "DK Metcalf", team: "Pit", proj: 0.00, pts: 8.20, stats: "42 Rec Yds, 4 Rec", game: "W 29-24 @ Det" },
+                        { pos: "WR", name: "Ladd McConkey", team: "LAC", proj: 14.07, pts: 14.30, stats: "1 Rec TD, 43 Rec Yds, 4 Rec", game: "W 34-17 @ Dal" },
+                        { pos: "WR", name: "Jordan Addison", team: "Min", proj: 9.70, pts: 4.60, stats: "26 Rec Yds, 2 Rec", game: "W 16-13 @ NYG" },
+                        { pos: "RB", name: "Breece Hall", team: "NYJ", proj: 17.84, pts: 8.30, stats: "54 Rush Yds, 2 Rec, 9 Rec Yds", game: "L 6-29 @ NO" },
+                        { pos: "RB", name: "De'Von Achane", team: "Mia", proj: 19.96, pts: 20.00, stats: "81 Rush Yds, 1 Rush TD, 3 Rec", game: "L 21-45 vs Cin" },
+                        { pos: "TE", name: "T.J. Hockenson", team: "Min", proj: 8.05, pts: 1.20, stats: "1 Rec, 2 Rec Yds", game: "W 16-13 @ NYG" },
+                        { pos: "W/R/T", name: "Puka Nacua", team: "LAR", proj: 22.35, pts: 54.50, stats: "225 Rec Yds, 12 Rec, 2 Rec TD", game: "L 37-38 @ Sea" },
+                        { pos: "Q/W", name: "Justin Herbert", team: "LAC", proj: 19.23, pts: 33.20, stats: "300 Pass Yds, 2 Pass TD, 1 Rush TD", game: "W 34-17 @ Dal" },
+                        { pos: "DEF", name: "Bills", team: "Buf", proj: 7.81, pts: 8.00, stats: "2 Int, 3 Sack, Pts Allow 14-20", game: "W 23-20 @ Cle" }
                     ],
                     team2: [
-                        { pos: "QB", name: "Dak Prescott", pts: 19.16 },
-                        { pos: "WR", name: "Terry McLaurin", pts: 8.30 },
-                        { pos: "WR", name: "Chris Godwin Jr.", pts: 8.00 },
-                        { pos: "WR", name: "DJ Moore", pts: 23.90 },
-                        { pos: "RB", name: "Josh Jacobs", pts: 4.80 },
-                        { pos: "RB", name: "Travis Etienne Jr.", pts: 16.60 },
-                        { pos: "TE", name: "Travis Kelce", pts: 1.60 },
-                        { pos: "W/R/T", name: "Jonathan Taylor", pts: 16.90 },
-                        { pos: "Q/W", name: "Lamar Jackson", pts: 4.74 },
-                        { pos: "DEF", name: "Saints", pts: 19.00 }
+                        { pos: "QB", name: "Dak Prescott", team: "Dal", proj: 19.43, pts: 19.16, stats: "244 Pass Yds, 2 Pass TD, 14 Rush Yds", game: "L 17-34 vs LAC" },
+                        { pos: "WR", name: "Terry McLaurin", team: "Was", proj: 12.40, pts: 8.30, stats: "53 Rec Yds, 3 Rec", game: "L 18-29 vs Phi" },
+                        { pos: "WR", name: "Chris Godwin Jr.", team: "TB", proj: 10.74, pts: 8.00, stats: "5 Rec, 30 Rec Yds", game: "L 20-23 @ Car" },
+                        { pos: "WR", name: "DJ Moore", team: "Chi", proj: 15.35, pts: 23.90, stats: "97 Rec Yds, 1 Rec TD, 5 Rec", game: "W 22-16 vs GB" },
+                        { pos: "RB", name: "Josh Jacobs", team: "GB", proj: 17.69, pts: 4.80, stats: "36 Rush Yds, 2 Rec, 1 Fum Lost", game: "L 16-22 @ Chi" },
+                        { pos: "RB", name: "Travis Etienne Jr.", team: "Jax", proj: 15.54, pts: 16.60, stats: "1 Rec TD, 50 Rush Yds, 4 Rec", game: "W 34-20 @ Den" },
+                        { pos: "TE", name: "Travis Kelce", team: "KC", proj: 10.43, pts: 1.60, stats: "1 Rec, 6 Rec Yds", game: "L 9-26 @ Ten" },
+                        { pos: "W/R/T", name: "Jonathan Taylor", team: "Ind", proj: 22.35, pts: 16.90, stats: "1 Rush TD, 46 Rush Yds, 33 Rec Yds", game: "L 27-48 vs SF" },
+                        { pos: "Q/W", name: "Lamar Jackson", team: "Bal", proj: 19.23, pts: 4.74, stats: "101 Pass Yds, 7 Rush Yds", game: "L 24-28 vs NE" },
+                        { pos: "DEF", name: "Saints", team: "NO", proj: 7.81, pts: 19.00, stats: "8 Sack, Pts Allow 1-6, 1 Int", game: "W 29-6 vs NYJ" }
+                    ]
+                },
+                bench: {
+                    team1: [
+                        { pos: "WR", name: "Rashee Rice", team: "KC", proj: 10.61, pts: 7.10, stats: "35 Rec Yds, 3 Rec, 6 Rush Yds", game: "L 9-26 @ Ten" },
+                        { pos: "RB", name: "Kareem Hunt", team: "KC", proj: 4.37, pts: 8.20, stats: "2 Rush Yds, 82 Rush Yds", game: "L 9-26 @ Ten" },
+                        { pos: "WR", name: "Rashid Shaheed", team: "Sea", proj: 10.06, pts: 4.90, stats: "1 Ret TD, 31 Rush Yds", game: "W 38-37 vs LAR" },
+                        { pos: "TE", name: "Sam LaPorta", team: "Det", proj: 6.86, pts: 8.50, stats: "", game: "L 24-29 vs Pit" },
+                        { pos: "WR", name: "Brandon Aiyuk", team: "SF", proj: 8.70, pts: 13.50, stats: "", game: "W 48-27 @ Ind" },
+                        { pos: "DEF", name: "Broncos", team: "Den", proj: 4.77, pts: 3.00, stats: "2 Sack, 1 Fum Rec, Pts Allow 28-34", game: "L 20-34 vs Jax" }
+                    ],
+                    team2: [
+                        { pos: "WR", name: "Jayden Reed", team: "GB", proj: 10.61, pts: 7.10, stats: "35 Rec Yds, 3 Rec, 6 Rush Yds", game: "L 16-22 @ Chi" },
+                        { pos: "RB", name: "Emanuel Wilson", team: "GB", proj: 4.37, pts: 8.20, stats: "82 Rush Yds", game: "L 16-22 @ Chi" },
+                        { pos: "TE", name: "Jake Ferguson", team: "Dal", proj: 10.06, pts: 4.90, stats: "3 Rec, 19 Rec Yds", game: "L 17-34 vs LAC" },
+                        { pos: "RB", name: "Jacory Croskey-Merritt", team: "Was", proj: 6.86, pts: 8.50, stats: "1 Rush TD, 25 Rush Yds", game: "L 18-29 vs Phi" },
+                        { pos: "RB", name: "Isiah Pacheco", team: "KC", proj: 8.70, pts: 13.50, stats: "6 Rec, 41 Rec Yds, 34 Rush Yds", game: "L 9-26 @ Ten" },
+                        { pos: "DEF", name: "Commanders", team: "Was", proj: 4.77, pts: 3.00, stats: "2 Sack, 1 Fum Rec, Pts Allow 28-34", game: "L 18-29 vs Phi" }
                     ]
                 }
             },
             final: {
-                title: "Week 17 - Championship",
-                team1: { name: "CCR", manager: "AdamR", record: "8-6-0 | 1st", score: 187.50, isWinner: true },
-                team2: { name: "Saquon deez nutz", manager: "Jason", record: "9-5-0 | 2nd", score: 117.52, isWinner: false },
-                players: {
+                title: "Week 17 Championship - Dec 23-29",
+                team1: { name: "CCR", manager: "AdamR", record: "8-6-0 | 1st", score: 187.50, proj: 141.26, isWinner: true },
+                team2: { name: "Saquon deez nutz", manager: "Jason", record: "9-5-0 | 2nd", score: 117.52, proj: 138.76, isWinner: false },
+                starters: {
                     team1: [
-                        { pos: "QB", name: "Brock Purdy", pts: 40.92 },
-                        { pos: "WR", name: "Zay Flowers", pts: 13.00 },
-                        { pos: "WR", name: "Jaxon Smith-Njigba", pts: 16.20 },
-                        { pos: "WR", name: "Parker Washington", pts: 19.00 },
-                        { pos: "RB", name: "Derrick Henry", pts: 51.60 },
-                        { pos: "RB", name: "Saquon Barkley", pts: 6.80 },
-                        { pos: "TE", name: "Darren Waller", pts: 1.00 },
-                        { pos: "W/R/T", name: "Tony Pollard", pts: 11.50 },
-                        { pos: "Q/W", name: "Bo Nix", pts: 20.48 },
-                        { pos: "DEF", name: "Jaguars", pts: 7.00 }
+                        { pos: "QB", name: "Brock Purdy", team: "SF", proj: 19.24, pts: 40.92, stats: "303 Pass Yds, 3 Pass TD, 2 Rush TD", game: "W 42-38 vs Chi" },
+                        { pos: "WR", name: "Zay Flowers", team: "Bal", proj: 14.67, pts: 13.00, stats: "1 Rec TD, 4 Rec, 30 Rec Yds", game: "W 41-24 @ GB" },
+                        { pos: "WR", name: "Jaxon Smith-Njigba", team: "Sea", proj: 22.55, pts: 16.20, stats: "9 Rec, 72 Rec Yds", game: "W 27-10 @ Car" },
+                        { pos: "WR", name: "Parker Washington", team: "Jax", proj: 9.59, pts: 19.00, stats: "115 Rec Yds, 8 Rec, +5 Rush Yds", game: "W 23-17 @ Ind" },
+                        { pos: "RB", name: "Derrick Henry", team: "Bal", proj: 14.12, pts: 51.60, stats: "4 Rush TD, 216 Rush Yds", game: "W 41-24 @ GB" },
+                        { pos: "RB", name: "Saquon Barkley", team: "Phi", proj: 16.06, pts: 6.80, stats: "68 Rush Yds", game: "W 13-12 @ Buf" },
+                        { pos: "TE", name: "Darren Waller", team: "Mia", proj: 9.73, pts: 1.00, stats: "1 Rec", game: "W 20-17 vs TB" },
+                        { pos: "W/R/T", name: "Tony Pollard", team: "Ten", proj: 11.86, pts: 11.50, stats: "85 Rush Yds, 2 Rec, 10 Rec Yds", game: "L 26-34 vs NO" },
+                        { pos: "Q/W", name: "Bo Nix", team: "Den", proj: 17.33, pts: 20.48, stats: "182 Pass Yds, 1 Rush TD, 42 Rush Yds", game: "W 20-13 @ KC" },
+                        { pos: "DEF", name: "Jaguars", team: "Jax", proj: 6.11, pts: 7.00, stats: "2 Int, 2 Sack, Pts Allow 14-20", game: "W 23-17 @ Ind" }
                     ],
                     team2: [
-                        { pos: "QB", name: "Josh Allen", pts: 23.18 },
-                        { pos: "WR", name: "Ladd McConkey", pts: 4.10 },
-                        { pos: "WR", name: "Jordan Addison", pts: 14.50 },
-                        { pos: "WR", name: "Rashid Shaheed", pts: 1.80 },
-                        { pos: "RB", name: "Breece Hall", pts: 22.90 },
-                        { pos: "RB", name: "De'Von Achane", pts: 14.20 },
-                        { pos: "TE", name: "(Empty)", pts: 0.00 },
-                        { pos: "W/R/T", name: "Puka Nacua", pts: 15.70 },
-                        { pos: "Q/W", name: "Justin Herbert", pts: 16.14 },
-                        { pos: "DEF", name: "Bills", pts: 5.00 }
+                        { pos: "QB", name: "Josh Allen", team: "Buf", proj: 19.70, pts: 23.18, stats: "2 Rush TD, 262 Pass Yds, 27 Rush Yds", game: "L 12-13 vs Phi" },
+                        { pos: "WR", name: "Ladd McConkey", team: "LAC", proj: 13.22, pts: 4.10, stats: "31 Rec Yds, 1 Rec", game: "L 16-20 vs Hou" },
+                        { pos: "WR", name: "Jordan Addison", team: "Min", proj: 10.78, pts: 14.50, stats: "65 Rush Yds, 1 Rush TD, 1 40 Yd Rush TD", game: "W 23-10 vs Det" },
+                        { pos: "WR", name: "Rashid Shaheed", team: "Sea", proj: 6.91, pts: 1.80, stats: "1 Rec, 8 Rec Yds", game: "W 27-10 @ Car" },
+                        { pos: "RB", name: "Breece Hall", team: "NYJ", proj: 19.10, pts: 22.90, stats: "111 Rush Yds, 1 Rush TD, 2 Rec", game: "L 10-42 vs NE" },
+                        { pos: "RB", name: "De'Von Achane", team: "Mia", proj: 18.94, pts: 14.20, stats: "83 Rush Yds, 3 Rec, 29 Rec Yds", game: "W 20-17 vs TB" },
+                        { pos: "TE", name: "(Empty)", team: "", proj: 0.00, pts: 0.00, stats: "", game: "" },
+                        { pos: "W/R/T", name: "Puka Nacua", team: "LAR", proj: 26.54, pts: 15.70, stats: "1 Rec TD, 5 Rec, 47 Rec Yds", game: "L 24-27 @ Atl" },
+                        { pos: "Q/W", name: "Justin Herbert", team: "LAC", proj: 17.55, pts: 16.14, stats: "236 Pass Yds, 1 Pass TD, 37 Rush Yds", game: "L 16-20 vs Hou" },
+                        { pos: "DEF", name: "Bills", team: "Buf", proj: 6.02, pts: 5.00, stats: "Pts Allow 7-13, 1 Sack", game: "L 12-13 vs Phi" }
+                    ]
+                },
+                bench: {
+                    team1: [
+                        { pos: "TE", name: "Colby Parkinson", team: "LAR", proj: 8.32, pts: 11.30, stats: "6 Rec, 53 Rec Yds", game: "L 24-27 @ Atl" },
+                        { pos: "TE", name: "George Kittle", team: "SF", proj: 0.00, pts: 0.00, stats: "", game: "W 42-38 vs Chi" },
+                        { pos: "RB", name: "Rhamondre Stevenson", team: "NE", proj: 9.68, pts: 27.20, stats: "1 Rush TD, 1 Rec TD, 55 Rec Yds", game: "W 42-10 @ NYJ" },
+                        { pos: "WR", name: "Deebo Samuel", team: "Was", proj: 17.90, pts: 11.30, stats: "68 Rec Yds, 25 Rush Yds, 2 Rec", game: "L 23-30 vs Dal" },
+                        { pos: "WR", name: "Davante Adams", team: "LAR", proj: 0.00, pts: 0.00, stats: "", game: "L 24-27 @ Atl" },
+                        { pos: "WR", name: "Romeo Doubs", team: "GB", proj: 8.40, pts: 9.20, stats: "62 Rec Yds, 3 Rec", game: "L 24-41 vs Bal" }
+                    ],
+                    team2: [
+                        { pos: "WR", name: "DK Metcalf", team: "Pit", proj: 10.61, pts: 0.00, stats: "", game: "L 6-13 @ Cle" },
+                        { pos: "WR", name: "Rashee Rice", team: "KC", proj: 0.00, pts: 0.00, stats: "", game: "L 13-20 vs Den" },
+                        { pos: "RB", name: "Kareem Hunt", team: "KC", proj: 5.57, pts: 3.80, stats: "38 Rush Yds", game: "L 13-20 vs Den" },
+                        { pos: "TE", name: "T.J. Hockenson", team: "Min", proj: 0.00, pts: 0.00, stats: "", game: "W 23-10 vs Det" },
+                        { pos: "WR", name: "Brandon Aiyuk", team: "SF", proj: 10.22, pts: 5.00, stats: "", game: "W 42-38 vs Chi" },
+                        { pos: "DEF", name: "Broncos", team: "Den", proj: 10.22, pts: 5.00, stats: "Pts Allow 7-13, 1 Sack", game: "W 20-13 @ KC" }
                     ]
                 }
             }
@@ -567,67 +471,106 @@
                         <h3>${data.team1.name} ${data.team1.isWinner ? '🏆' : ''}</h3>
                         <div class="record">${data.team1.manager} | ${data.team1.record}</div>
                         <div class="score">${data.team1.score}</div>
+                        <div class="proj">Projected: ${data.team1.proj}</div>
                     </div>
                     <div class="vs-text">VS</div>
                     <div class="team-detail ${data.team2.isWinner ? 'winner-detail' : ''}">
                         <h3>${data.team2.name} ${data.team2.isWinner ? '🏆' : ''}</h3>
                         <div class="record">${data.team2.manager} | ${data.team2.record}</div>
                         <div class="score">${data.team2.score}</div>
+                        <div class="proj">Projected: ${data.team2.proj}</div>
                     </div>
                 </div>
 
-                <div class="players-section">
-                    <h4>Roster Comparison</h4>
-                    <table class="players-table">
-                        <thead>
-                            <tr>
-                                <th>Pos</th>
-                                <th>${data.team1.name}</th>
-                                <th style="text-align:right">Pts</th>
-                                <th style="text-align:right">Pts</th>
-                                <th>${data.team2.name}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-            `;
+                <button class="section-toggle" onclick="toggleSection('starters-${id}')">
+                    <span>Starting Lineups</span>
+                    <span class="arrow">▼</span>
+                </button>
+                <div id="starters-${id}" class="section-content open">
+                    <div class="comparison-grid">
+                        <div class="team-column">
+                            <h4>${data.team1.name} - ${data.team1.score} pts</h4>
+                            ${renderPlayerTable(data.starters.team1, data.team1.isWinner)}
+                        </div>
+                        <div class="team-column">
+                            <h4>${data.team2.name} - ${data.team2.score} pts</h4>
+                            ${renderPlayerTable(data.starters.team2, data.team2.isWinner)}
+                        </div>
+                    </div>
+                </div>
 
-            for (let i = 0; i < data.players.team1.length; i++) {
-                const p1 = data.players.team1[i];
-                const p2 = data.players.team2[i];
-                const p1Class = p1.pts > p2.pts ? 'winner-pts' : (p1.pts < p2.pts ? 'loser-pts' : '');
-                const p2Class = p2.pts > p1.pts ? 'winner-pts' : (p2.pts < p1.pts ? 'loser-pts' : '');
-
-                html += `
-                    <tr>
-                        <td class="pos-col">${p1.pos}</td>
-                        <td>${p1.name}</td>
-                        <td class="pts-col ${p1Class}">${p1.pts.toFixed(2)}</td>
-                        <td class="pts-col ${p2Class}">${p2.pts.toFixed(2)}</td>
-                        <td>${p2.name}</td>
-                    </tr>
-                `;
-            }
-
-            html += `
-                        </tbody>
-                    </table>
+                <button class="section-toggle" onclick="toggleSection('bench-${id}')">
+                    <span>Bench Players</span>
+                    <span class="arrow">▼</span>
+                </button>
+                <div id="bench-${id}" class="section-content">
+                    <div class="comparison-grid">
+                        <div class="team-column">
+                            <h4>${data.team1.name} Bench</h4>
+                            ${renderPlayerTable(data.bench.team1, false, true)}
+                        </div>
+                        <div class="team-column">
+                            <h4>${data.team2.name} Bench</h4>
+                            ${renderPlayerTable(data.bench.team2, false, true)}
+                        </div>
+                    </div>
                 </div>
             `;
 
             body.innerHTML = html;
             modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function renderPlayerTable(players, isWinner, isBench = false) {
+            let html = `<table class="players-table ${isBench ? 'bench-table' : ''}">
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th>Player</th>
+                        <th style="text-align:right">Proj</th>
+                        <th style="text-align:right">Pts</th>
+                        <th class="stats-col">Stats</th>
+                        <th class="game-col">Game</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+            players.forEach(p => {
+                const diff = p.pts - p.proj;
+                const diffClass = diff >= 0 ? 'winner-pts' : 'loser-pts';
+                const diffStr = diff >= 0 ? `+${diff.toFixed(1)}` : diff.toFixed(1);
+
+                html += `
+                    <tr>
+                        <td class="pos-col">${p.pos}</td>
+                        <td>${p.name}${p.team ? ` <small style="color:#888">${p.team}</small>` : ''}</td>
+                        <td class="proj-col">${p.proj.toFixed(1)}</td>
+                        <td class="pts-col ${diffClass}">${p.pts.toFixed(2)} <small>(${diffStr})</small></td>
+                        <td class="stats-col">${p.stats || '-'}</td>
+                        <td class="game-col">${p.game || '-'}</td>
+                    </tr>`;
+            });
+
+            html += '</tbody></table>';
+            return html;
+        }
+
+        function toggleSection(id) {
+            const section = document.getElementById(id);
+            const btn = section.previousElementSibling;
+            section.classList.toggle('open');
+            btn.classList.toggle('open');
         }
 
         function closeModal(event) {
             if (!event || event.target === document.getElementById('modal')) {
                 document.getElementById('modal').classList.remove('active');
+                document.body.style.overflow = '';
             }
         }
 
-        // Close on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
     </script>
 </body>
 </html>
