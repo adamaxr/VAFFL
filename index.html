@@ -44,6 +44,21 @@
         .header {
             padding: 40px 0;
         }
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+        }
+        .title-line {
+            height: 3px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, #ffd700);
+            border-radius: 2px;
+        }
+        .title-line.right {
+            background: linear-gradient(90deg, #ffd700, transparent);
+        }
         h1 {
             font-size: 3.5rem;
             color: #ffd700;
@@ -152,6 +167,12 @@
             h1 {
                 font-size: 2.5rem;
             }
+            .title-container {
+                justify-content: center;
+            }
+            .title-line {
+                width: 50px;
+            }
             .nav-links {
                 justify-content: center;
             }
@@ -168,7 +189,11 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>VAFFL</h1>
+            <div class="title-container">
+                <div class="title-line"></div>
+                <h1>VAFFL</h1>
+                <div class="title-line right"></div>
+            </div>
         </header>
 
         <nav class="nav-links">
