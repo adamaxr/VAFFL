@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAFFL - Payout Structure</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #ffd700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+        .back-link {
+            display: inline-block;
+            color: #ffd700;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .payout-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .payout-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .payout-table th, .payout-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .payout-table th {
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+        .place {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .first { color: #ffd700; }
+        .second { color: #c0c0c0; }
+        .third { color: #cd7f32; }
+        .fourth { color: #888; }
+        .amount {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: #4ade80;
+        }
+        .bonus-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .bonus-section h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        .bonus-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .bonus-label { color: #aaa; }
+        .bonus-amount { color: #4ade80; font-weight: bold; }
+        .year-links {
+            text-align: center;
+        }
+        .year-links h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        .year-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .year-buttons a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 30px;
+            border: 2px solid #ffd700;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        .year-buttons a:hover {
+            background: #ffd700;
+            color: #1a1a2e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Home</a>
+        <h1>Payout Structure</h1>
+        <p class="subtitle">$5,000 Pot</p>
+
+        <div class="payout-card">
+            <table class="payout-table">
+                <tr>
+                    <th>Place</th>
+                    <th>Payout</th>
+                </tr>
+                <tr>
+                    <td class="place first">1st Place</td>
+                    <td class="amount">$1,800</td>
+                </tr>
+                <tr>
+                    <td class="place second">2nd Place</td>
+                    <td class="amount">$1,100</td>
+                </tr>
+                <tr>
+                    <td class="place third">3rd Place</td>
+                    <td class="amount">$600</td>
+                </tr>
+                <tr>
+                    <td class="place fourth">4th Place</td>
+                    <td class="amount">$300</td>
+                </tr>
+            </table>
+
+            <div class="bonus-section">
+                <h3>Bonus Payouts</h3>
+                <div class="bonus-item">
+                    <span class="bonus-label">Season High Points</span>
+                    <span class="bonus-amount">$220</span>
+                </div>
+                <div class="bonus-item">
+                    <span class="bonus-label">Weekly High Points</span>
+                    <span class="bonus-amount">$70 / week</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="year-links">
+            <h2>Past Payouts</h2>
+            <div class="year-buttons">
+                <a href="2025-payouts.html">2025</a>
+                <a href="2024-payouts.html">2024</a>
+                <a href="2023-payouts.html">2023</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
