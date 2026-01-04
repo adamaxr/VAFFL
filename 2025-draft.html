@@ -12,7 +12,7 @@
             color: #fff;
             padding: 20px;
         }
-        .container { max-width: 1600px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; }
         .back-link { display: inline-block; color: #ffd700; text-decoration: none; margin-bottom: 20px; }
         .back-link:hover { text-decoration: underline; }
         h1 { text-align: center; color: #ffd700; margin-bottom: 20px; }
@@ -34,114 +34,57 @@
             background: #ffd700;
             color: #1a1a2e;
         }
-        .draft-container {
-            overflow-x: auto;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 15px;
-        }
-        .draft-table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 1200px;
-            font-size: 0.75rem;
-        }
-        .draft-table th {
-            background: #1a1a2e;
-            color: #ffd700;
-            padding: 10px 5px;
+        .draft-image {
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            font-size: 0.8rem;
+            margin-bottom: 30px;
         }
-        .draft-table td {
-            padding: 6px;
-            text-align: center;
-            vertical-align: top;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .round-num {
-            background: #1a1a2e;
-            color: #ffd700;
-            font-weight: bold;
-            width: 30px;
-            position: sticky;
-            left: 0;
-            z-index: 5;
-        }
-        .pick {
-            border-radius: 6px;
-            padding: 8px 4px;
-            min-height: 50px;
-        }
-        .pick-qb { background: #c41e3a; }
-        .pick-rb { background: #1e90ff; }
-        .pick-wr { background: #1e90ff; }
-        .pick-te { background: #c41e3a; }
-        .pick-k { background: #6b7280; }
-        .pick-def { background: #6b7280; }
-        .player-name {
-            font-weight: bold;
-            font-size: 0.8rem;
-            margin-bottom: 2px;
-        }
-        .player-info {
-            font-size: 0.65rem;
-            color: rgba(255,255,255,0.8);
-        }
-        .keeper {
-            position: relative;
-            box-shadow: 0 0 0 3px #ffd700;
-        }
-        .keeper::after {
-            content: '🔒';
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            font-size: 0.7rem;
-        }
-        .keeper-legend {
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(255,215,0,0.1);
-            border-radius: 10px;
-            border: 1px solid rgba(255,215,0,0.3);
-        }
-        .keeper-legend span {
-            color: #ffd700;
-        }
-        .view-toggle {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .view-toggle button {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            border: 2px solid #ffd700;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            margin: 0 10px;
-            transition: all 0.3s;
-        }
-        .view-toggle button:hover, .view-toggle button.active {
-            background: #ffd700;
-            color: #1a1a2e;
-        }
-        .image-view {
-            text-align: center;
-            display: none;
-        }
-        .image-view img {
+        .draft-image img {
             max-width: 100%;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .image-view.active, .draft-container.active {
-            display: block;
+        .draft-image p {
+            color: #888;
+            margin-top: 15px;
+        }
+        .keeper-section {
+            background: rgba(255,215,0,0.1);
+            border: 2px solid rgba(255,215,0,0.5);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        .keeper-section h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .keeper-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .keeper-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .keeper-icon {
+            font-size: 1.5rem;
+        }
+        .keeper-details {
+            flex: 1;
+        }
+        .keeper-player {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .keeper-info {
+            color: #aaa;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -155,283 +98,74 @@
             <a href="2023-draft.html">2023</a>
         </nav>
 
-        <div class="keeper-legend">
-            <span>🔒 = Keeper Pick</span> (gold border indicates keeper selections)
-        </div>
-
-        <div class="view-toggle">
-            <button class="active" onclick="showView('table')">Table View</button>
-            <button onclick="showView('image')">Image View</button>
-        </div>
-
-        <div class="draft-container active" id="tableView">
-            <table class="draft-table">
-                <thead>
-                    <tr>
-                        <th>Rd</th>
-                        <th>CMC</th>
-                        <th>Gamehendge Comets</th>
-                        <th>Saquon deez nutz</th>
-                        <th>Angry Dragon</th>
-                        <th>Rockets</th>
-                        <th>Steel 'er Face</th>
-                        <th>Who Flung Puka</th>
-                        <th>Trailer Parkansas</th>
-                        <th>Velvet Evolver</th>
-                        <th>CCR</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Round 1 -->
-                    <tr>
-                        <td class="round-num">1</td>
-                        <td><div class="pick pick-wr"><div class="player-name">Ja'Marr Chase</div><div class="player-info">CIN · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">CeeDee Lamb</div><div class="player-info">DAL · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Saquon Barkley</div><div class="player-info">PHI · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Bijan Robinson</div><div class="player-info">ATL · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Tyreek Hill</div><div class="player-info">MIA · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Amon-Ra St. Brown</div><div class="player-info">DET · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Puka Nacua</div><div class="player-info">LAR · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Breece Hall</div><div class="player-info">NYJ · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">A.J. Brown</div><div class="player-info">PHI · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Garrett Wilson</div><div class="player-info">NYJ · WR</div></div></td>
-                    </tr>
-                    <!-- Round 2 (snake - reversed) -->
-                    <tr>
-                        <td class="round-num">2</td>
-                        <td><div class="pick pick-rb"><div class="player-name">Josh Jacobs</div><div class="player-info">GB · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Jonathan Taylor</div><div class="player-info">IND · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Derrick Henry</div><div class="player-info">BAL · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Jahmyr Gibbs</div><div class="player-info">DET · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">De'Von Achane</div><div class="player-info">MIA · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Malik Nabers</div><div class="player-info">NYG · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Kyren Williams</div><div class="player-info">LAR · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">James Cook</div><div class="player-info">BUF · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Davante Adams</div><div class="player-info">NYJ · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Marvin Harrison Jr.</div><div class="player-info">ARI · WR</div></div></td>
-                    </tr>
-                    <!-- Round 3 -->
-                    <tr>
-                        <td class="round-num">3</td>
-                        <td><div class="pick pick-rb"><div class="player-name">Alvin Kamara</div><div class="player-info">NO · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Chris Olave</div><div class="player-info">NO · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Drake London</div><div class="player-info">ATL · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">DK Metcalf</div><div class="player-info">SEA · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Deebo Samuel</div><div class="player-info">SF · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Isiah Pacheco</div><div class="player-info">KC · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Brandon Aiyuk</div><div class="player-info">SF · WR</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Sam LaPorta</div><div class="player-info">DET · TE</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Kenneth Walker III</div><div class="player-info">SEA · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Mike Evans</div><div class="player-info">TB · WR</div></div></td>
-                    </tr>
-                    <!-- Round 4 -->
-                    <tr>
-                        <td class="round-num">4</td>
-                        <td><div class="pick pick-rb"><div class="player-name">Joe Mixon</div><div class="player-info">HOU · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Aaron Jones</div><div class="player-info">MIN · RB</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Josh Allen</div><div class="player-info">BUF · QB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">David Montgomery</div><div class="player-info">DET · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Rashee Rice</div><div class="player-info">KC · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Tony Pollard</div><div class="player-info">TEN · RB</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Jalen Hurts</div><div class="player-info">PHI · QB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Rachaad White</div><div class="player-info">TB · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Najee Harris</div><div class="player-info">PIT · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Travis Etienne Jr.</div><div class="player-info">JAC · RB</div></div></td>
-                    </tr>
-                    <!-- Round 5 -->
-                    <tr>
-                        <td class="round-num">5</td>
-                        <td><div class="pick pick-wr"><div class="player-name">Jaylen Waddle</div><div class="player-info">MIA · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">DJ Moore</div><div class="player-info">CHI · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Rhamondre Stevenson</div><div class="player-info">NE · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Terry McLaurin</div><div class="player-info">WAS · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">George Pickens</div><div class="player-info">PIT · WR</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Mark Andrews</div><div class="player-info">BAL · TE</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Nico Collins</div><div class="player-info">HOU · WR</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Dalton Kincaid</div><div class="player-info">BUF · TE</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Stefon Diggs</div><div class="player-info">HOU · WR</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Lamar Jackson</div><div class="player-info">BAL · QB</div></div></td>
-                    </tr>
-                    <!-- Round 6 -->
-                    <tr>
-                        <td class="round-num">6</td>
-                        <td><div class="pick pick-rb"><div class="player-name">Zamir White</div><div class="player-info">LV · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Keenan Allen</div><div class="player-info">CHI · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Zack Moss</div><div class="player-info">CIN · RB</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">George Kittle</div><div class="player-info">SF · TE</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Patrick Mahomes</div><div class="player-info">KC · QB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Brian Robinson Jr.</div><div class="player-info">WAS · RB</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Dallas Goedert</div><div class="player-info">PHI · TE</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">D'Andre Swift</div><div class="player-info">CHI · RB</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Anthony Richardson</div><div class="player-info">IND · QB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Tee Higgins</div><div class="player-info">CIN · WR</div></div></td>
-                    </tr>
-                    <!-- Round 7 -->
-                    <tr>
-                        <td class="round-num">7</td>
-                        <td><div class="pick pick-rb"><div class="player-name">Isiah Pacheco</div><div class="player-info">KC · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">D'Andre Swift</div><div class="player-info">CHI · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Jaylen Waddle</div><div class="player-info">MIA · WR</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Justin Herbert</div><div class="player-info">LAC · QB</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Trevor Lawrence</div><div class="player-info">JAC · QB</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Caleb Williams</div><div class="player-info">CHI · QB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Emeka Egbuka</div><div class="player-info">TB · WR</div></div></td>
-                        <td><div class="pick keeper pick-te"><div class="player-name">Trey McBride</div><div class="player-info">ARI · TE</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">David Montgomery</div><div class="player-info">DET · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">RJ Harvey</div><div class="player-info">DEN · RB</div></div></td>
-                    </tr>
-                    <!-- Round 8 -->
-                    <tr>
-                        <td class="round-num">8</td>
-                        <td><div class="pick pick-wr"><div class="player-name">Zay Flowers</div><div class="player-info">BAL · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Jerry Jeudy</div><div class="player-info">CLE · WR</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">J.J. McCarthy</div><div class="player-info">MIN · QB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Ricky Pearsall</div><div class="player-info">SF · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Rome Odunze</div><div class="player-info">CHI · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Chris Olave</div><div class="player-info">NO · WR</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Sam LaPorta</div><div class="player-info">DET · TE</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">C.J. Stroud</div><div class="player-info">HOU · QB</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Matthew Stafford</div><div class="player-info">LAR · QB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Matthew Golden</div><div class="player-info">GB · WR</div></div></td>
-                    </tr>
-                    <!-- Round 9 -->
-                    <tr>
-                        <td class="round-num">9</td>
-                        <td><div class="pick pick-te"><div class="player-name">Travis Kelce</div><div class="player-info">KC · TE</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Mark Andrews</div><div class="player-info">BAL · TE</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Aaron Jones</div><div class="player-info">MIN · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Rashee Rice</div><div class="player-info">KC · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Jordan Mason</div><div class="player-info">MIN · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Jaylen Warren</div><div class="player-info">PIT · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Tyler Warren</div><div class="player-info">IND · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Zach Charbonnet</div><div class="player-info">SEA · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Travis Hunter</div><div class="player-info">JAC · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Deebo Samuel</div><div class="player-info">WAS · WR</div></div></td>
-                    </tr>
-                    <!-- Round 10 -->
-                    <tr>
-                        <td class="round-num">10</td>
-                        <td><div class="pick pick-rb"><div class="player-name">Kaleb Johnson</div><div class="player-info">PIT · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Jauan Jennings</div><div class="player-info">SF · WR</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">T.J. Hockenson</div><div class="player-info">MIN · TE</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Jordan Addison</div><div class="player-info">MIN · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Stefon Diggs</div><div class="player-info">NE · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Josh Downs</div><div class="player-info">IND · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">J.K. Dobbins</div><div class="player-info">DEN · RB</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Bryce Young</div><div class="player-info">CAR · QB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Tyrone Tracy Jr.</div><div class="player-info">NYG · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Jakobi Meyers</div><div class="player-info">LVR · WR</div></div></td>
-                    </tr>
-                    <!-- Round 11 -->
-                    <tr>
-                        <td class="round-num">11</td>
-                        <td><div class="pick pick-rb"><div class="player-name">Travis Etienne</div><div class="player-info">JAC · RB</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Evan Engram</div><div class="player-info">DEN · TE</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Tucker Kraft</div><div class="player-info">GB · TE</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Braelon Allen</div><div class="player-info">NYJ · RB</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">David Njoku</div><div class="player-info">CLE · TE</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Cameron Ward</div><div class="player-info">TEN · QB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Javonte Williams</div><div class="player-info">DAL · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Michael Pittman Jr.</div><div class="player-info">IND · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Colston Loveland</div><div class="player-info">CHI · TE</div></div></td>
-                        <td><div class="pick keeper pick-wr"><div class="player-name">Jaxon Smith-Njigba</div><div class="player-info">SEA · WR</div></div></td>
-                    </tr>
-                    <!-- Round 12 -->
-                    <tr>
-                        <td class="round-num">12</td>
-                        <td><div class="pick pick-wr"><div class="player-name">Cooper Kupp</div><div class="player-info">SEA · WR</div></div></td>
-                        <td><div class="pick pick-def"><div class="player-name">Philadelphia Eagles</div><div class="player-info">PHI · DEF</div></div></td>
-                        <td><div class="pick keeper pick-wr"><div class="player-name">Ladd McConkey</div><div class="player-info">LAC · WR</div></div></td>
-                        <td><div class="pick keeper pick-rb"><div class="player-name">Chase Brown</div><div class="player-info">CIN · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Trey Benson</div><div class="player-info">ARI · RB</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Geno Smith</div><div class="player-info">LVR · QB</div></div></td>
-                        <td><div class="pick keeper pick-wr"><div class="player-name">Jameson Williams</div><div class="player-info">DET · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Khalil Shakir</div><div class="player-info">BUF · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Austin Ekeler</div><div class="player-info">WAS · RB</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Tua Tagovailoa</div><div class="player-info">MIA · QB</div></div></td>
-                    </tr>
-                    <!-- Round 13 -->
-                    <tr>
-                        <td class="round-num">13</td>
-                        <td><div class="pick pick-rb"><div class="player-name">Jacory Croskey-Merritt</div><div class="player-info">WAS · RB</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Michael Penix Jr.</div><div class="player-info">ATL · QB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Darnell Mooney</div><div class="player-info">ATL · WR</div></div></td>
-                        <td><div class="pick pick-def"><div class="player-name">Denver Broncos</div><div class="player-info">DEN · DEF</div></div></td>
-                        <td><div class="pick keeper pick-te"><div class="player-name">Brock Bowers</div><div class="player-info">LVR · TE</div></div></td>
-                        <td><div class="pick keeper pick-qb"><div class="player-name">Baker Mayfield</div><div class="player-info">TB · QB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Keon Coleman</div><div class="player-info">BUF · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Quinshon Judkins</div><div class="player-info">CLE · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Rhamondre Stevenson</div><div class="player-info">NE · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Jerome Ford</div><div class="player-info">CLE · RB</div></div></td>
-                    </tr>
-                    <!-- Round 14 -->
-                    <tr>
-                        <td class="round-num">14</td>
-                        <td><div class="pick pick-te"><div class="player-name">Jonnu Smith</div><div class="player-info">PIT · TE</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Jayden Higgins</div><div class="player-info">HOU · WR</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Dalton Kincaid</div><div class="player-info">BUF · TE</div></div></td>
-                        <td><div class="pick pick-te"><div class="player-name">Dallas Goedert</div><div class="player-info">PHI · TE</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Sam Darnold</div><div class="player-info">SEA · QB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Ray Davis</div><div class="player-info">BUF · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Tank Bigsby</div><div class="player-info">JAC · RB</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Keenan Allen</div><div class="player-info">LAC · WR</div></div></td>
-                        <td><div class="pick keeper pick-rb"><div class="player-name">Nick Chubb</div><div class="player-info">HOU · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Chris Godwin</div><div class="player-info">TB · WR</div></div></td>
-                    </tr>
-                    <!-- Round 15 -->
-                    <tr>
-                        <td class="round-num">15</td>
-                        <td><div class="pick pick-te"><div class="player-name">Jake Ferguson</div><div class="player-info">DAL · TE</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Jayden Reed</div><div class="player-info">GB · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Marvin Mims Jr.</div><div class="player-info">DEN · WR</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Brandon Aiyuk</div><div class="player-info">SF · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Ollie Gordon II</div><div class="player-info">MIA · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Jaydon Blue</div><div class="player-info">DAL · RB</div></div></td>
-                        <td><div class="pick pick-def"><div class="player-name">Green Bay Packers</div><div class="player-info">GB · DEF</div></div></td>
-                        <td><div class="pick pick-def"><div class="player-name">Minnesota Vikings</div><div class="player-info">MIN · DEF</div></div></td>
-                        <td><div class="pick pick-qb"><div class="player-name">Jaxson Dart</div><div class="player-info">NYG · QB</div></div></td>
-                        <td><div class="pick pick-def"><div class="player-name">Baltimore Ravens</div><div class="player-info">BAL · DEF</div></div></td>
-                    </tr>
-                    <!-- Round 16 -->
-                    <tr>
-                        <td class="round-num">16</td>
-                        <td><div class="pick pick-def"><div class="player-name">Buffalo Bills</div><div class="player-info">BUF · DEF</div></div></td>
-                        <td><div class="pick pick-wr"><div class="player-name">Marquise Brown</div><div class="player-info">KC · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Tyler Allgeier</div><div class="player-info">ATL · RB</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Kareem Hunt</div><div class="player-info">KC · RB</div></div></td>
-                        <td><div class="pick pick-def"><div class="player-name">San Francisco 49ers</div><div class="player-info">SF · DEF</div></div></td>
-                        <td><div class="pick pick-def"><div class="player-name">Pittsburgh Steelers</div><div class="player-info">PIT · DEF</div></div></td>
-                        <td><div class="pick pick-def"><div class="player-name">Christian Kirk</div><div class="player-info">HOU · WR</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Cameron Skattebo</div><div class="player-info">NYG · RB</div></div></td>
-                        <td><div class="pick pick-def"><div class="player-name">Houston Texans</div><div class="player-info">HOU · DEF</div></div></td>
-                        <td><div class="pick pick-rb"><div class="player-name">Joe Mixon</div><div class="player-info">HOU · RB</div></div></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="image-view" id="imageView">
+        <div class="draft-image">
             <a href="draft results/2025  draft results board.jpg" target="_blank">
                 <img src="draft results/2025  draft results board.jpg" alt="2025 VAFFL Draft Board">
             </a>
-            <p style="color: #888; margin-top: 15px;">Click image to view full size</p>
+            <p>Click image to view full size</p>
+        </div>
+
+        <div class="keeper-section">
+            <h2>🔒 Keeper Picks</h2>
+            <div class="keeper-list">
+                <div class="keeper-item">
+                    <span class="keeper-icon">🔒</span>
+                    <div class="keeper-details">
+                        <div class="keeper-player">Trey McBride</div>
+                        <div class="keeper-info">Round 7 · Trailer Parkansas</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-icon">🔒</span>
+                    <div class="keeper-details">
+                        <div class="keeper-player">Jaxon Smith-Njigba</div>
+                        <div class="keeper-info">Round 11 · CCR</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-icon">🔒</span>
+                    <div class="keeper-details">
+                        <div class="keeper-player">Ladd McConkey</div>
+                        <div class="keeper-info">Round 12 · Saquon deez nutz</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-icon">🔒</span>
+                    <div class="keeper-details">
+                        <div class="keeper-player">Chase Brown</div>
+                        <div class="keeper-info">Round 12 · Angry Dragon</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-icon">🔒</span>
+                    <div class="keeper-details">
+                        <div class="keeper-player">Jameson Williams</div>
+                        <div class="keeper-info">Round 12 · Who Flung Puka</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-icon">🔒</span>
+                    <div class="keeper-details">
+                        <div class="keeper-player">Brock Bowers</div>
+                        <div class="keeper-info">Round 13 · Rockets</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-icon">🔒</span>
+                    <div class="keeper-details">
+                        <div class="keeper-player">Baker Mayfield</div>
+                        <div class="keeper-info">Round 13 · Steel 'er Face</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-icon">🔒</span>
+                    <div class="keeper-details">
+                        <div class="keeper-player">Nick Chubb</div>
+                        <div class="keeper-info">Round 14 · Velvet Evolver</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <script>
-        function showView(view) {
-            document.getElementById('tableView').classList.remove('active');
-            document.getElementById('imageView').classList.remove('active');
-            document.querySelectorAll('.view-toggle button').forEach(btn => btn.classList.remove('active'));
-
-            if (view === 'table') {
-                document.getElementById('tableView').classList.add('active');
-                document.querySelector('.view-toggle button:first-child').classList.add('active');
-            } else {
-                document.getElementById('imageView').classList.add('active');
-                document.querySelector('.view-toggle button:last-child').classList.add('active');
-            }
-        }
-    </script>
 </body>
 </html>
