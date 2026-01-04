@@ -34,74 +34,25 @@
         .back-link:hover {
             text-decoration: underline;
         }
-        .voting-item {
-            background: rgba(255,255,255,0.1);
+        .form-container {
+            background: #fff;
             border-radius: 12px;
-            padding: 20px 25px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
-        .item-text {
-            flex: 1;
-            font-size: 1.1rem;
-        }
-        .vote-buttons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .vote-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 15px;
+        .form-container iframe {
+            width: 100%;
+            height: 1200px;
             border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
         }
-        .vote-btn.up {
-            background: rgba(74, 222, 128, 0.2);
-            color: #4ade80;
-        }
-        .vote-btn.up:hover {
-            background: rgba(74, 222, 128, 0.4);
-        }
-        .vote-btn.down {
-            background: rgba(248, 113, 113, 0.2);
-            color: #f87171;
-        }
-        .vote-btn.down:hover {
-            background: rgba(248, 113, 113, 0.4);
-        }
-        .vote-count {
-            font-weight: bold;
-            min-width: 20px;
-            text-align: center;
-        }
-        .section-note {
-            background: rgba(255, 215, 0, 0.1);
-            border-left: 4px solid #ffd700;
-            padding: 15px 20px;
-            margin-bottom: 25px;
-            border-radius: 0 8px 8px 0;
+        .external-link {
+            display: inline-block;
+            margin-top: 20px;
             color: #ffd700;
+            text-decoration: none;
         }
-
-        @media (max-width: 600px) {
-            .voting-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            .vote-buttons {
-                width: 100%;
-                justify-content: flex-start;
-            }
+        .external-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -111,146 +62,11 @@
         <h1>2026 VAFFL Voting</h1>
         <p class="subtitle">Preliminary Voting - Only 1 vote per team please</p>
 
-        <div class="section-note">
-            Click thumbs up or thumbs down to cast your vote on each item.
+        <div class="form-container">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfEF4L30eQfrR4CjWCjrnhw0FZYax9JaELIO8eWzVdgzZDvWA/viewform?embedded=true">Loading…</iframe>
         </div>
 
-        <div class="voting-item">
-            <div class="item-text">Consolation bracket for 5th - 10th</div>
-            <div class="vote-buttons">
-                <button class="vote-btn up" onclick="vote('item1', 'up')">
-                    <span>👍</span>
-                    <span class="vote-count" id="item1-up">0</span>
-                </button>
-                <button class="vote-btn down" onclick="vote('item1', 'down')">
-                    <span>👎</span>
-                    <span class="vote-count" id="item1-down">0</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="voting-item">
-            <div class="item-text">Eliminate Defense</div>
-            <div class="vote-buttons">
-                <button class="vote-btn up" onclick="vote('item2', 'up')">
-                    <span>👍</span>
-                    <span class="vote-count" id="item2-up">0</span>
-                </button>
-                <button class="vote-btn down" onclick="vote('item2', 'down')">
-                    <span>👎</span>
-                    <span class="vote-count" id="item2-down">0</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="voting-item">
-            <div class="item-text">Keeper 9th round or later (currently 8th)</div>
-            <div class="vote-buttons">
-                <button class="vote-btn up" onclick="vote('item3', 'up')">
-                    <span>👍</span>
-                    <span class="vote-count" id="item3-up">0</span>
-                </button>
-                <button class="vote-btn down" onclick="vote('item3', 'down')">
-                    <span>👎</span>
-                    <span class="vote-count" id="item3-down">0</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="voting-item">
-            <div class="item-text">Eliminate keeper</div>
-            <div class="vote-buttons">
-                <button class="vote-btn up" onclick="vote('item4', 'up')">
-                    <span>👍</span>
-                    <span class="vote-count" id="item4-up">0</span>
-                </button>
-                <button class="vote-btn down" onclick="vote('item4', 'down')">
-                    <span>👎</span>
-                    <span class="vote-count" id="item4-down">0</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="voting-item">
-            <div class="item-text">Eliminate a roster spot</div>
-            <div class="vote-buttons">
-                <button class="vote-btn up" onclick="vote('item5', 'up')">
-                    <span>👍</span>
-                    <span class="vote-count" id="item5-up">0</span>
-                </button>
-                <button class="vote-btn down" onclick="vote('item5', 'down')">
-                    <span>👎</span>
-                    <span class="vote-count" id="item5-down">0</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="voting-item">
-            <div class="item-text">Change waiver wire from 6 days to 2</div>
-            <div class="vote-buttons">
-                <button class="vote-btn up" onclick="vote('item6', 'up')">
-                    <span>👍</span>
-                    <span class="vote-count" id="item6-up">0</span>
-                </button>
-                <button class="vote-btn down" onclick="vote('item6', 'down')">
-                    <span>👎</span>
-                    <span class="vote-count" id="item6-down">0</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="voting-item">
-            <div class="item-text">Change trade veto voting (currently need 4 to veto)</div>
-            <div class="vote-buttons">
-                <button class="vote-btn up" onclick="vote('item7', 'up')">
-                    <span>👍</span>
-                    <span class="vote-count" id="item7-up">0</span>
-                </button>
-                <button class="vote-btn down" onclick="vote('item7', 'down')">
-                    <span>👎</span>
-                    <span class="vote-count" id="item7-down">0</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="voting-item">
-            <div class="item-text">Switch to best ball</div>
-            <div class="vote-buttons">
-                <button class="vote-btn up" onclick="vote('item8', 'up')">
-                    <span>👍</span>
-                    <span class="vote-count" id="item8-up">0</span>
-                </button>
-                <button class="vote-btn down" onclick="vote('item8', 'down')">
-                    <span>👎</span>
-                    <span class="vote-count" id="item8-down">0</span>
-                </button>
-            </div>
-        </div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEF4L30eQfrR4CjWCjrnhw0FZYax9JaELIO8eWzVdgzZDvWA/viewform" target="_blank" class="external-link">Open form in new tab &rarr;</a>
     </div>
-
-    <script>
-        // Load saved votes from localStorage
-        function loadVotes() {
-            const votes = JSON.parse(localStorage.getItem('vaffl2026votes') || '{}');
-            for (let i = 1; i <= 8; i++) {
-                const upCount = votes[`item${i}-up`] || 0;
-                const downCount = votes[`item${i}-down`] || 0;
-                document.getElementById(`item${i}-up`).textContent = upCount;
-                document.getElementById(`item${i}-down`).textContent = downCount;
-            }
-        }
-
-        // Save and update vote
-        function vote(item, type) {
-            const votes = JSON.parse(localStorage.getItem('vaffl2026votes') || '{}');
-            const key = `${item}-${type}`;
-            votes[key] = (votes[key] || 0) + 1;
-            localStorage.setItem('vaffl2026votes', JSON.stringify(votes));
-            document.getElementById(key).textContent = votes[key];
-        }
-
-        // Load votes on page load
-        loadVotes();
-    </script>
 </body>
 </html>
