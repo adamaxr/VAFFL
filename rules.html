@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAFFL - Rules</title>
+    <title>VAFFL - Rules / Info</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -15,9 +15,6 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 40px;
         }
         h1 {
             color: #ffd700;
@@ -32,18 +29,84 @@
         .back-link:hover {
             text-decoration: underline;
         }
-        .content {
+        .section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        .section p, .section li {
             line-height: 1.8;
+            color: #ddd;
+        }
+        .section ul {
+            padding-left: 20px;
+        }
+        .section li {
+            margin-bottom: 8px;
+        }
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        .warning {
+            color: #ff6b6b;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="index.html" class="back-link">&larr; Back to Home</a>
-        <h1>League Rules</h1>
-        <div class="content">
-            <p>Rules content coming soon...</p>
-            <!-- Add your league rules here -->
+        <h1>Rules / Info</h1>
+
+        <div class="section">
+            <h2>League Format</h2>
+            <ul>
+                <li><span class="highlight">SUPERFLEX LEAGUE</span></li>
+                <li>Wed & Sat night bidding / $Zero$ bids allowed / 6 day waivers</li>
+                <li>No divisions, no kickers</li>
+                <li>Playoffs: 6 teams, weeks 15, 16 & 17</li>
+                <li>Playoff FAAB does NOT reset (save some $)</li>
+                <li>Playoffs reseed after round 1</li>
+                <li class="warning">**Please do not bid if eliminated from $**</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Keeper Rules</h2>
+            <ul>
+                <li>Must be drafted round 8 or later</li>
+                <li>CANNOT drop player</li>
+                <li>Replaces same round pick next draft and can only be kept that one year</li>
+                <li>You can NOT keep an FA</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Draft Notes</h2>
+            <ul>
+                <li>Snake draft, Superflex, no divisions, no kickers</li>
+                <li><span class="highlight">Roster:</span> QB WR WR WR RB RB FLEX S-FLEX D</li>
+                <li>1 min 30 second picks</li>
+                <li>Sign in ahead of time and make sure you can see the league</li>
+                <li>Add players to your queue in case you run out of time or lose connection</li>
+                <li class="warning">Do not draft on an IPAD (keepers aren't shown correctly)</li>
+                <li class="warning">NO pickups week 1 - make sure you draft a full team</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Beware of Yahoo Glitches</h2>
+            <ul>
+                <li><span class="highlight">IR glitch:</span> If you have someone on IR and they become healthy, you can keep them on IR but you will be locked from picking up players UNLESS you entered your bid prior to their status changing. In the meantime you can change your lineup, you will have to drop a player if you put the IR player in.</li>
+                <li><span class="highlight">Defense glitch:</span> If you pick up a D and have an open D slot, your new D won't automatically go in there (careful with overseas games).</li>
+                <li>No pickups week 1 (draft a full team)</li>
+            </ul>
         </div>
     </div>
 </body>
