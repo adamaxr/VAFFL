@@ -55,6 +55,55 @@
             color: #888;
             font-size: 0.9rem;
         }
+        .keepers-section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        .keepers-section h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .keeper-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+        .keeper-item {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .keeper-icon {
+            font-size: 1.2rem;
+        }
+        .keeper-info {
+            flex: 1;
+        }
+        .keeper-player {
+            font-weight: bold;
+            color: #fff;
+        }
+        .keeper-details {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        .keeper-round {
+            background: #ffd700;
+            color: #1a1a2e;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
@@ -71,6 +120,61 @@
                 <img src="draft results/2025  draft results board.jpg" alt="2025 VAFFL Draft Board">
             </a>
             <p class="click-hint">Click image to view full size</p>
+        </div>
+
+        <div class="keepers-section">
+            <h2><span>🔒</span> Keepers</h2>
+            <div class="keeper-list">
+                <div class="keeper-item">
+                    <span class="keeper-round">Rd 7</span>
+                    <div class="keeper-info">
+                        <div class="keeper-player">Trey McBride</div>
+                        <div class="keeper-details">Trailer Parkansas</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-round">Rd 11</span>
+                    <div class="keeper-info">
+                        <div class="keeper-player">Jaxon Smith-Njigba</div>
+                        <div class="keeper-details">CCR</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-round">Rd 12</span>
+                    <div class="keeper-info">
+                        <div class="keeper-player">Jameson Williams</div>
+                        <div class="keeper-details">Who Flung Puka</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-round">Rd 12</span>
+                    <div class="keeper-info">
+                        <div class="keeper-player">Chase Brown</div>
+                        <div class="keeper-details">Angry Dragon</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-round">Rd 13</span>
+                    <div class="keeper-info">
+                        <div class="keeper-player">Brock Bowers</div>
+                        <div class="keeper-details">Rockets</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-round">Rd 13</span>
+                    <div class="keeper-info">
+                        <div class="keeper-player">Baker Mayfield</div>
+                        <div class="keeper-details">Steel 'er Face</div>
+                    </div>
+                </div>
+                <div class="keeper-item">
+                    <span class="keeper-round">Rd 14</span>
+                    <div class="keeper-info">
+                        <div class="keeper-player">Nick Chubb</div>
+                        <div class="keeper-details">Velvet Evolver</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
