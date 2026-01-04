@@ -126,8 +126,6 @@
         .stats-col { font-size: 0.75rem; color: #aaa; }
         .game-col { font-size: 0.75rem; color: #888; }
         .winner-row { background: rgba(74, 222, 128, 0.1); }
-        .winner-pts { color: #4ade80; }
-        .loser-pts { color: #f87171; }
         .bench-table { opacity: 0.8; }
         .bench-label { background: rgba(100,100,100,0.3); color: #888; font-style: italic; }
 
@@ -537,16 +535,12 @@
                 <tbody>`;
 
             players.forEach(p => {
-                const diff = p.pts - p.proj;
-                const diffClass = diff >= 0 ? 'winner-pts' : 'loser-pts';
-                const diffStr = diff >= 0 ? `+${diff.toFixed(1)}` : diff.toFixed(1);
-
                 html += `
                     <tr>
                         <td class="pos-col">${p.pos}</td>
                         <td>${p.name}${p.team ? ` <small style="color:#888">${p.team}</small>` : ''}</td>
                         <td class="proj-col">${p.proj.toFixed(1)}</td>
-                        <td class="pts-col ${diffClass}">${p.pts.toFixed(2)} <small>(${diffStr})</small></td>
+                        <td class="pts-col">${p.pts.toFixed(2)}</td>
                         <td class="stats-col">${p.stats || '-'}</td>
                         <td class="game-col">${p.game || '-'}</td>
                     </tr>`;
