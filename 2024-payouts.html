@@ -16,6 +16,28 @@
         .back-link { display: inline-block; color: #ffd700; text-decoration: none; margin-bottom: 20px; }
         .back-link:hover { text-decoration: underline; }
         h1 { text-align: center; color: #ffd700; margin-bottom: 10px; }
+        .year-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .year-nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 20px;
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .year-nav a:hover {
+            background: #ffd700;
+            color: #1a1a2e;
+        }
+        .year-nav a.active {
+            background: #ffd700;
+            color: #1a1a2e;
+        }
         .entry-info { text-align: center; color: #888; margin-bottom: 30px; font-size: 1.1rem; }
         .payout-card {
             background: rgba(255,255,255,0.1);
@@ -44,6 +66,11 @@
     <div class="container">
         <a href="index.html" class="back-link">&larr; Back to Home</a>
         <h1>2024 VAFFL Payouts</h1>
+        <nav class="year-nav">
+            <a href="2025-payouts.html">2025</a>
+            <a href="2024-payouts.html" class="active">2024</a>
+            <a href="2023-payouts.html">2023</a>
+        </nav>
         <p class="entry-info">$420 Entry | $4,200 Pot</p>
 
         <div class="payout-card">
