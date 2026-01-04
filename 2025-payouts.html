@@ -3,47 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAFFL - 2025 Payouts</title>
+    <title>2025 VAFFL Payouts</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             color: #fff;
-            padding: 40px 20px;
+            padding: 20px;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        .container { max-width: 800px; margin: 0 auto; }
+        .back-link { display: inline-block; color: #ffd700; text-decoration: none; margin-bottom: 20px; }
+        .back-link:hover { text-decoration: underline; }
+        h1 { text-align: center; color: #ffd700; margin-bottom: 10px; }
+        .entry-info { text-align: center; color: #888; margin-bottom: 30px; font-size: 1.1rem; }
+        .payout-card {
             background: rgba(255,255,255,0.1);
             border-radius: 15px;
-            padding: 40px;
-        }
-        h1 {
-            color: #ffd700;
-            margin-bottom: 30px;
-        }
-        .back-link {
-            display: inline-block;
-            color: #ffd700;
-            text-decoration: none;
+            padding: 30px;
             margin-bottom: 20px;
         }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        .content {
-            line-height: 1.8;
-        }
+        .payout-table { width: 100%; border-collapse: collapse; }
+        .payout-table th, .payout-table td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .payout-table th { color: #ffd700; font-size: 1.1rem; }
+        .place { font-weight: bold; font-size: 1.2rem; }
+        .first { color: #ffd700; }
+        .second { color: #c0c0c0; }
+        .third { color: #cd7f32; }
+        .fourth { color: #888; }
+        .amount { font-weight: bold; font-size: 1.3rem; color: #4ade80; }
+        .team { color: #fff; }
+        .bonus-section { margin-top: 30px; }
+        .bonus-section h3 { color: #ffd700; margin-bottom: 15px; }
+        .bonus-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .bonus-label { color: #aaa; }
+        .bonus-amount { color: #4ade80; font-weight: bold; }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="index.html" class="back-link">&larr; Back to Home</a>
-        <h1>2025 Payouts</h1>
-        <div class="content">
-            <p>Payout information coming soon...</p>
-            <!-- Add 2025 payout details here -->
+        <h1>2025 VAFFL Payouts</h1>
+        <p class="entry-info">$500 Entry | $5,000 Pot</p>
+
+        <div class="payout-card">
+            <table class="payout-table">
+                <tr>
+                    <th>Place</th>
+                    <th>Team</th>
+                    <th>Payout</th>
+                </tr>
+                <tr>
+                    <td class="place first">1st</td>
+                    <td class="team">CCR</td>
+                    <td class="amount">$1,800</td>
+                </tr>
+                <tr>
+                    <td class="place second">2nd</td>
+                    <td class="team">Saquon deez nutz</td>
+                    <td class="amount">$1,100</td>
+                </tr>
+                <tr>
+                    <td class="place third">3rd</td>
+                    <td class="team">Who Flung Puka</td>
+                    <td class="amount">$600</td>
+                </tr>
+                <tr>
+                    <td class="place fourth">4th</td>
+                    <td class="team">CMC</td>
+                    <td class="amount">$300</td>
+                </tr>
+            </table>
+
+            <div class="bonus-section">
+                <h3>Bonus Payouts</h3>
+                <div class="bonus-item">
+                    <span class="bonus-label">Season High Points</span>
+                    <span class="bonus-amount">$220</span>
+                </div>
+                <div class="bonus-item">
+                    <span class="bonus-label">Weekly High Points</span>
+                    <span class="bonus-amount">$70/week</span>
+                </div>
+            </div>
         </div>
     </div>
 </body>

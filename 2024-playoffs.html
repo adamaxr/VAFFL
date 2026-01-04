@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAFFL 2024 Playoffs</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .back-link { display: inline-block; color: #ffd700; text-decoration: none; margin-bottom: 20px; }
+        .back-link:hover { text-decoration: underline; }
+        h1 { text-align: center; color: #ffd700; margin-bottom: 10px; font-size: 2.5rem; }
+        .champion-banner {
+            text-align: center;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #1a1a2e;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 1.3rem;
+        }
+        .champion-banner span { font-weight: bold; font-size: 1.5rem; }
+
+        .bracket { display: flex; justify-content: space-between; align-items: center; gap: 20px; overflow-x: auto; padding: 20px 0; }
+        .round { display: flex; flex-direction: column; gap: 20px; min-width: 280px; }
+        .round-title { text-align: center; color: #ffd700; font-size: 1.1rem; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 2px solid #ffd700; }
+
+        .matchup {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .matchup:hover { background: rgba(255,255,255,0.15); border-color: #ffd700; transform: scale(1.02); }
+        .team-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; }
+        .team-row:first-child { border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .team-name { font-weight: 500; }
+        .team-score { font-weight: bold; font-size: 1.1rem; }
+        .winner .team-name, .winner .team-score { color: #ffd700; }
+        .click-hint { text-align: center; font-size: 0.75rem; color: #888; margin-top: 8px; }
+        .championship .matchup { background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,170,0,0.1)); border: 2px solid #ffd700; }
+        .third-place .matchup { background: linear-gradient(135deg, rgba(205,127,50,0.2), rgba(205,127,50,0.1)); border: 2px solid #cd7f32; }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #1a1a2e;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 100%;
+            margin: 20px auto;
+            border: 2px solid #ffd700;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,215,0,0.1);
+            border-radius: 13px 13px 0 0;
+        }
+        .modal-header h2 { color: #ffd700; }
+        .close-btn { background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; }
+        .close-btn:hover { color: #ffd700; }
+        .modal-body { padding: 20px; }
+
+        .matchup-header { display: flex; justify-content: space-around; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 20px; }
+        .team-detail { text-align: center; }
+        .team-detail.winner-detail { color: #ffd700; }
+        .team-detail h3 { font-size: 1.5rem; margin-bottom: 5px; }
+        .team-detail .score { font-size: 2.5rem; font-weight: bold; }
+        .team-detail .proj { font-size: 0.9rem; color: #888; }
+        .vs-text { font-size: 1.5rem; color: #888; }
+
+        .top-performers { margin-top: 20px; }
+        .top-performers h4 { color: #ffd700; margin-bottom: 10px; }
+        .performer-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .performer-card { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; }
+        .performer-card h5 { color: #ffd700; margin-bottom: 10px; font-size: 0.9rem; }
+        .performer { padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+        .performer:last-child { border-bottom: none; }
+        .performer-pts { color: #4ade80; font-weight: bold; }
+
+        @media (max-width: 900px) {
+            .bracket { flex-direction: column; }
+            .performer-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Home</a>
+        <h1>2024 Playoffs</h1>
+        <div class="champion-banner">🏆 Champion: <span>Trailer Parkansas</span> 🏆</div>
+
+        <div class="bracket">
+            <div class="round">
+                <div class="round-title">Week 16 - Semifinals</div>
+                <div class="matchup" onclick="showMatchup('sf1')">
+                    <div class="team-row"><span class="team-name">CCR</span><span class="team-score">179.86</span></div>
+                    <div class="team-row winner"><span class="team-name">Rockets</span><span class="team-score">207.80</span></div>
+                    <div class="click-hint">Click for details</div>
+                </div>
+                <div class="matchup" onclick="showMatchup('sf2')">
+                    <div class="team-row"><span class="team-name">Angry Dragon</span><span class="team-score">158.34</span></div>
+                    <div class="team-row winner"><span class="team-name">Trailer Parkansas</span><span class="team-score">158.40</span></div>
+                    <div class="click-hint">Click for details</div>
+                </div>
+            </div>
+
+            <div class="round championship">
+                <div class="round-title">Week 17 - Championship</div>
+                <div class="matchup" onclick="showMatchup('final')">
+                    <div class="team-row"><span class="team-name">Rockets</span><span class="team-score">132.38</span></div>
+                    <div class="team-row winner"><span class="team-name">Trailer Parkansas 🏆</span><span class="team-score">149.48</span></div>
+                    <div class="click-hint">Click for details</div>
+                </div>
+            </div>
+
+            <div class="round third-place">
+                <div class="round-title">Week 17 - 3rd Place</div>
+                <div class="matchup" onclick="showMatchup('third')">
+                    <div class="team-row winner"><span class="team-name">CCR</span><span class="team-score">186.66</span></div>
+                    <div class="team-row"><span class="team-name">Angry Dragon</span><span class="team-score">116.98</span></div>
+                    <div class="click-hint">Click for details</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modal-title">Matchup Details</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        const matchupData = {
+            sf1: {
+                title: "Week 16 Semifinal - Dec 17-23",
+                team1: { name: "CCR", record: "10-4-0 | 3rd", score: 179.86, proj: 155.57, isWinner: false },
+                team2: { name: "Rockets", record: "9-5-0 | 2nd", score: 207.80, proj: 151.28, isWinner: true },
+                topPlayers: {
+                    team1: [
+                        { name: "Sam Darnold", pos: "QB", pts: 37.92 },
+                        { name: "Saquon Barkley", pos: "RB", pts: 34.50 },
+                        { name: "CeeDee Lamb", pos: "WR", pts: 30.20 },
+                        { name: "Brock Purdy", pos: "SF", pts: 25.12 },
+                        { name: "Josh Jacobs", pos: "RB", pts: 14.00 }
+                    ],
+                    team2: [
+                        { name: "Jayden Daniels", pos: "QB", pts: 37.92 },
+                        { name: "Breece Hall", pos: "RB", pts: 30.20 },
+                        { name: "Courtland Sutton", pos: "WR", pts: 24.30 },
+                        { name: "Brian Thomas Jr", pos: "WR", pts: 15.01 },
+                        { name: "Terry McLaurin", pos: "WR", pts: 14.12 }
+                    ]
+                }
+            },
+            sf2: {
+                title: "Week 16 Semifinal - Dec 17-23",
+                team1: { name: "Angry Dragon", record: "9-5-0 | 4th", score: 158.34, proj: 152.88, isWinner: false },
+                team2: { name: "Trailer Parkansas", record: "9-5-0 | 1st", score: 158.40, proj: 142.22, isWinner: true },
+                margin: "0.06 pts - Closest game of the playoffs!",
+                topPlayers: {
+                    team1: [
+                        { name: "Josh Allen", pos: "QB", pts: 26.36 },
+                        { name: "Derrick Henry", pos: "RB", pts: 49.80 },
+                        { name: "Puka Nacua", pos: "WR", pts: 11.90 },
+                        { name: "James Conner", pos: "RB", pts: 26.60 },
+                        { name: "Chase Brown", pos: "RB", pts: 13.90 }
+                    ],
+                    team2: [
+                        { name: "Tua Tagovailoa", pos: "QB", pts: 16.68 },
+                        { name: "Tyreek Hill", pos: "WR", pts: 17.70 },
+                        { name: "Aaron Jones Sr", pos: "RB", pts: 15.13 },
+                        { name: "Jonathan Taylor", pos: "RB", pts: 11.12 },
+                        { name: "Calvin Ridley", pos: "WR", pts: 12.44 }
+                    ]
+                }
+            },
+            final: {
+                title: "Week 17 Championship - Dec 24-30",
+                team1: { name: "Rockets", record: "9-5-0 | 2nd", score: 132.38, proj: 144.57, isWinner: false },
+                team2: { name: "Trailer Parkansas", record: "9-5-0 | 1st", score: 149.48, proj: 137.74, isWinner: true },
+                topPlayers: {
+                    team1: [
+                        { name: "Jayden Daniels", pos: "QB", pts: 32.78 },
+                        { name: "Brian Thomas Jr", pos: "WR", pts: 5.70 },
+                        { name: "Breece Hall", pos: "RB", pts: 11.70 },
+                        { name: "Brock Bowers", pos: "TE", pts: 30.30 },
+                        { name: "Tampa Bay", pos: "DEF", pts: 7.30 }
+                    ],
+                    team2: [
+                        { name: "Michael Penix Jr", pos: "QB", pts: 14.53 },
+                        { name: "Davante Adams", pos: "WR", pts: 19.48 },
+                        { name: "Courtland Sutton", pos: "WR", pts: 14.24 },
+                        { name: "Aaron Jones Sr", pos: "RB", pts: 15.36 },
+                        { name: "Jonathan Taylor", pos: "RB", pts: 12.70 }
+                    ]
+                }
+            },
+            third: {
+                title: "Week 17 - 3rd Place Game - Dec 24-30",
+                team1: { name: "CCR", record: "10-4-0 | 3rd", score: 186.66, proj: 148.15, isWinner: true },
+                team2: { name: "Angry Dragon", record: "9-5-0 | 4th", score: 116.98, proj: 150.24, isWinner: false },
+                topPlayers: {
+                    team1: [
+                        { name: "Sam Darnold", pos: "QB", pts: 28.78 },
+                        { name: "Jaxon Smith-Njigba", pos: "WR", pts: 22.90 },
+                        { name: "Mike Evans", pos: "WR", pts: 7.20 },
+                        { name: "Saquon Barkley", pos: "RB", pts: 20.74 },
+                        { name: "Josh Jacobs", pos: "RB", pts: 24.50 }
+                    ],
+                    team2: [
+                        { name: "Josh Allen", pos: "QB", pts: 22.98 },
+                        { name: "Puka Nacua", pos: "WR", pts: 19.48 },
+                        { name: "Derrick Henry", pos: "RB", pts: 13.10 },
+                        { name: "Chase Brown", pos: "RB", pts: 16.29 },
+                        { name: "Los Angeles", pos: "DEF", pts: 13.13 }
+                    ]
+                }
+            }
+        };
+
+        function showMatchup(id) {
+            const data = matchupData[id];
+            if (!data) return;
+
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            title.textContent = data.title;
+
+            let marginHtml = data.margin ? `<p style="text-align:center; color:#ffd700; margin-top:10px; font-style:italic;">${data.margin}</p>` : '';
+
+            let html = `
+                <div class="matchup-header">
+                    <div class="team-detail ${data.team1.isWinner ? 'winner-detail' : ''}">
+                        <h3>${data.team1.name} ${data.team1.isWinner ? '🏆' : ''}</h3>
+                        <div class="proj">${data.team1.record}</div>
+                        <div class="score">${data.team1.score}</div>
+                        <div class="proj">Projected: ${data.team1.proj}</div>
+                    </div>
+                    <div class="vs-text">VS</div>
+                    <div class="team-detail ${data.team2.isWinner ? 'winner-detail' : ''}">
+                        <h3>${data.team2.name} ${data.team2.isWinner ? '🏆' : ''}</h3>
+                        <div class="proj">${data.team2.record}</div>
+                        <div class="score">${data.team2.score}</div>
+                        <div class="proj">Projected: ${data.team2.proj}</div>
+                    </div>
+                </div>
+                ${marginHtml}
+                <div class="top-performers">
+                    <h4>Top Performers</h4>
+                    <div class="performer-list">
+                        <div class="performer-card">
+                            <h5>${data.team1.name}</h5>
+                            ${data.topPlayers.team1.map(p => `<div class="performer">${p.pos} ${p.name} - <span class="performer-pts">${p.pts}</span></div>`).join('')}
+                        </div>
+                        <div class="performer-card">
+                            <h5>${data.team2.name}</h5>
+                            ${data.topPlayers.team2.map(p => `<div class="performer">${p.pos} ${p.name} - <span class="performer-pts">${p.pts}</span></div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            body.innerHTML = html;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (!event || event.target === document.getElementById('modal')) {
+                document.getElementById('modal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    </script>
+</body>
+</html>
